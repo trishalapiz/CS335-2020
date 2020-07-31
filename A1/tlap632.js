@@ -1,5 +1,5 @@
 // function home() {
-//     document.getElementById('header').style.display = ""
+//     document.getElementById('home').style.display = inline;
 // }
 
 // function products() {
