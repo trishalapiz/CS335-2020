@@ -7,7 +7,6 @@ html {
     background-color: rgb(249, 253, 245);
 }
 
-
 .header { /* the business name, tabs and search engine */
     background-color: rgb(186, 231, 144);
     float: left;
@@ -20,7 +19,7 @@ html {
 }
 
 .heading {
-    /*background-color: aqua;*/
+    /* background-color: aqua; */
     float: left;
     margin: 0% 2%;
 }
@@ -29,7 +28,8 @@ html {
     font-size: 2.5em;
     color: crimson;
     text-align: center;
-    /*background-color: blueviolet;*/
+    /* background-color: blueviolet; */
+    cursor: pointer;
     text-shadow:
 		-1px -1px 0 #FEE11A,
 		1px -1px 0 #FEE11A,
@@ -37,25 +37,45 @@ html {
 		1px 1px 0 #FEE11A;
 } /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
 
-.tabs {
-    /*background-color: blue;*/
-    color: darkgreen;
-    width: 12%;
-    height: 100%;
-    float: left;
-    text-align: center;
-    margin-top: 1.5%;
-    /*border: 1px solid black;*/
+#name:active {
+    text-decoration: underline;
+    color: antiquewhite;
 }
 
-.tabs:hover {
+.tabs {
+    /* background-color: cornflowerblue; */
+    width: 12%;
+    height: 100%;
+    text-align: center;
+    /* padding-left: 1%; */
+    float: left;
+    margin-top: 2.25%;
+    /* border: 1px solid black; */
+    font-size: x-large;
+}
+
+.links {
+    font-weight: bold;
+    color: darkgreen;
+    text-decoration: none;
+}
+
+.links:hover {
     /*background-color: yellow;*/
     color: rgb(121, 184, 121);
     /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+    cursor: pointer;
+}
+
+.links:active {
+    /*background-color: yellow;*/
+    color: rgb(18, 241, 18);
+    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+    cursor: pointer;
 }
 
 .search { /*search bar thingy?*/
-    /*background-color: deeppink;*/
+    /* background-color: deeppink; */
     text-align: center;
     height: 10%;
     width: 25%;
@@ -87,9 +107,10 @@ html {
     background-color:  white;
     width: 20%;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    cursor: pointer;
 }
 
-#one {
+#home {
     background-color: aquamarine;
     float: left;
     width: 100%;
@@ -104,7 +125,7 @@ html {
 }
 
 /* PRODUCTS PAGE */
-#two {
+#products {
     background-color: blue;
     float: left;
     width: 100%;
@@ -115,7 +136,7 @@ html {
 }
 
 /* LOCATIONS PAGE */
-#three {
+#location {
     background-color: palevioletred;
     float: left;
     width: 100%;
@@ -126,7 +147,7 @@ html {
 }
 
 /* LOCATIONS PAGE */
-#four {
+#news {
     background-color: blueviolet;
     float: left;
     width: 100%;
@@ -137,7 +158,7 @@ html {
 }
 
 /* LOCATIONS PAGE */
-#five {
+#guest {
     background-color: gold;
     float: left;
     width: 100%;

@@ -11,24 +11,24 @@
 
     <body>
         <div class="header">
-            <div class="heading">
-                <h1 id="name" onclick="home()">Dunedin Dairy</h1>
+            <div class="heading"> <!-- HOME LIGHTBLUE BACKGROUND -->
+                <h1 id="name" onclick="home()">Dunedin Dairy</h1> <!-- PURPLE BACKGROUND -->
             </div>
 
-            <div class="tabs" id="tab1">
-                <h3 onclick="products()">Products</h3> <!-- USE ONCLICK() ON h3 HEADINGS -->
+            <div class="tabs" id="tab1"> <!-- PRODUCTS --> 
+                <a href="javascript:void(0)" class="links" onclick="products()">Products &#128717;</h3> <!-- USE ONCLICK() ON h3 HEADINGS -->
             </div>
 
-            <div class="tabs" id="tab2">
-                <h3 onclick="locations()">Location</h3>
+            <div class="tabs" id="tab2"> <!-- LOCATION -->
+                <a href="javascript:void(0)" class="links" onclick="locations()">Location &#128205;</h3> 
             </div>
 
-            <div class="tabs" id="tab3">
-                <h3 onclick="news()">News</h3>
+            <div class="tabs" id="tab3"> <!-- NEWS -->
+                <a href="javascript:void(0)" class="links" onclick="news()">News &#128240;</h3>
             </div>
 
-            <div class="tabs" id="tab4">
-                <h3 onclick="guestBook()">Guest Book</h3>
+            <div class="tabs" id="tab4"> <!-- GUEST BOOK -->
+                <a href="javascript:void(0)" class="links" onclick="guestBook()">Guest Book &#128214;</h3>
             </div>
 
             <div class="search">
@@ -42,31 +42,31 @@
         You can go visit them in Dunedin, or you can order their products online from the comfort of your home (or beach or wherever). 
         The shop uses a service-oriented architecture with a customer-facing UI front-end, and a service back-end -->
 
-
-        <div class="home" id="one">
+        <section id="home"> <!-- HOME PAGE -->
             <h1 id="greeting">Welcome to Dunedin Dairy</h1> 
-            <h3>The pride of the South and leading dairy in New Zealand!</h3>
+            <h3><i>The pride of the South and leading dairy in New Zealand</i></h3>
             <p>You're sure to find a great range of dairy products with a great bargain!
                 <p>Fresh milk, premium butter and cheese, you name it, we got it!
             </p>
             <p><br>You can visit us in-store or buy online, whichever suits you!
             </p> <!-- in-store = click on 'Locations'-->
-        </div> 
+        </section> 
 
-        <div class="products" id="two">
+        <section id="products"> <!-- Products section -->
             <h1>HELLO</h1>
-        </div>
+        </section>
 
-        <div class="location" id="three">
+        <section id="location"> <!-- Location section -->
             <h1>HELLO</h1>
-        </div>
+        </section>
 
-        <div class="news" id="four">
+        <section id="news"> <!-- News section -->
             <h1>HELLO</h1>
-        </div>
+        </section>
 
-        <div class="guest" id="five">
+        <section id="guest"> <!-- Guest section -->
             <h1>HELLO</h1>
-        </div>
+        </section>
+
     </body>
 </html>
