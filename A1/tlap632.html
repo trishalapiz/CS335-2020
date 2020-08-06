@@ -86,7 +86,8 @@
         </section> 
 
         <section id="products"> <!-- Products section -->
-            <h1>HELLO</h1>
+            <h1>Products</h1>
+            <input type="text" onkeyup="searchProducts()" id="productSearch" placeholder="&#128269; search for a product"> 
             <table id="items"></table>
             <!-- <br><br><br><br><br><br><br><br><br><br> -->
             <p>test</p>
@@ -107,15 +108,20 @@
         </section>
 
         <section id="news"> <!-- News section -->
-            <h1>HELLO</h1>
+            <h1>News</h1>
             <table id="dairyNews"></table>
         </section>
 
         <section id="guest"> <!-- Guest section -->
-            <h1>Please enter your comment below:</h1>
-            <input type="text" id="commentSpace" placeholder="Enter your comment here">
+            <h1>Please sign our guest book:</h1>
+            <div id="comment">
+                <input type="text" id="commentSpace" placeholder="Enter your comment here">
+            </div>
+            <label for="nameSpace">Your Name</label>
             <input type="text" id="nameSpace" placeholder="Enter your name here">
+            <br><br><br><p>Recent entries</p>
             <br><br><br><br><br><br><br><br><br><br>
+
             <table id="book"></table>
         </section>
 

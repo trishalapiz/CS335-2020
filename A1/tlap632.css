@@ -15,7 +15,7 @@ html {
     /*margin: 0% 2%;*/
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     position: relative;
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 }
 
 #logo {
@@ -143,38 +143,47 @@ html {
 
 /* PRODUCTS PAGE */
 #products {
-    background-color: blue;
+    /* background-color: blue; */
     float: left;
     width: 100%;
     height: 50%;
     text-align: center;
-    color: darkgreen;
+    color: black;
     font-size: large;
     display: none;
 }
 
+#productSearch {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+    padding: 1%;
+}
+
 #items, #dairyNews, #book {
-    background-color: yellow;
+    /* background-color: yellow; */
     border: 4px solid black;
     width: 100%;
     /* margin: 0% 40%; */
 }
 
-#items th, td { 
+#items td { 
     width:150px; 
     border:1px solid black;
     padding-bottom:3%; 
     color: black;
 } 
 
-#dairyNews td {
-    padding:0%;
-    width: 10%;
+#items th {
+    font-weight: bold;
+    font-size: xx-large;
+    color: black;
+    border: 1px solid black;
 }
 
 /* LOCATIONS PAGE */
 #location {
-    background-color: palevioletred;
+    /* background-color: palevioletred; */
     float: left;
     width: 100%;
     text-align: center;
@@ -189,7 +198,7 @@ html {
 }
 
 #details {
-    background-color: darkorange;
+    /* background-color: darkorange; */
     float: left;
     /* margin: 0% 5% 1%; */
     /* font-size: 17px; */
@@ -198,18 +207,23 @@ html {
     border: 2px solid darkgrey;
 }
 
-/* LOCATIONS PAGE */
+/* NEWS PAGE */
 #news {
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     float: left;
     width: 100%;
     text-align: center;
-    color: yellow;
+    color: black;
     font-size: large;
     display: none;
 }
 
-/* LOCATIONS PAGE */
+#dairyNews td {
+    padding:0%;
+    width: 10%;
+}
+
+/* GUEST BOOK PAGE */
 #guest {
     background-color: gold;
     float: left;
@@ -218,15 +232,28 @@ html {
     color: darkred;
     font-size: large;
     display: none;
+    /* padding: 3%; */
 }
 
-#commentSpace, #nameSpace {
+#commentSpace {
+    float: left;
+    border: none;
+    margin: 0% 5% 1%;
+    padding: 5%;
+    font-size: 17px;
+    height: 100%;
+    width: 70%;
+    border: 2px solid darkgrey;
+  }
+
+
+#nameSpace {
     float: left;
     border: none;
     margin: 0% 5% 1%;
     font-size: 17px;
     height: 50%;
-    width: 90%;
+    width: 20%;
     border: 2px solid darkgrey;
   }
 
