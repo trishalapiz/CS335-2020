@@ -152,6 +152,7 @@ html {
     padding-bottom:3%; 
 } 
 
+
 /* LOCATIONS PAGE */
 #location {
     /* background-color: palevioletred; */
@@ -193,6 +194,10 @@ html {
     padding:0%;
     width: auto;
     /* border: 1px solid black; */
+}
+
+#dairyNews img {
+    width: 30vh;
 }
 
 /* GUEST BOOK PAGE */

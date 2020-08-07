@@ -24,7 +24,7 @@ function products() { // get product data
 function displayProducts(products) { // products = the array of product records
     const pic = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id="
     let itemContent = "";
-    // [{"ItemId":"248309242","Origin":"France","Price":"99.99","Title":"Fromage frais battu 7.8%MG 5 kg","Type":"Cheese"}]
+
     const addRecord = (record) => {
         itemContent += "<tr><td><img src=" + pic + record.ItemId + " height=300 width=300> </td><td>" 
         + record.Title + "<br>" + record.Origin + "<br>$" + record.Price + "<br>" + record.Type + 
@@ -60,12 +60,17 @@ function showVCard(data) {
     // JSON.parse() converts a JSON string to a JavaScript string
     const vCardLine = JSON.parse(data).split("\n"); 
     const someArray = [];
-    const hello = [];
     for (var i = 0; i < vCardLine.length; i++) { // length = 9
       someArray.push(vCardLine[i].split(":")); // eg i = 0 "BEGIN:VCARD"
     }
     console.log(someArray);
-    // someArray = ["BEGIN:VCARD", "VERSION:2.1", "ORG:Dunedin Dairy", "TEL;WORK;VOICE:+64 3 448 6256", "ADR;WORK;PREF:;;535 Pine Hill Road; Dunedin; New Zealand", "EMAIL:info@DunedinDairy.co.nz", "PHOTO;ENCODING=BASE64;TYPE=PNG:iVBORw0KGgoAAAANSUh…rBxEPGWUUUYZRzwE4f8BxXEDXHU2cQkAAAAASUVORK5CYII=", "REV:20200424T195243Z", "END:VCARD"]
+    // someArray = [ ["BEGIN", "VCARD"], ["VERSION","2.1"], "ORG:Dunedin Dairy", "TEL;WORK;VOICE:+64 3 448 6256", ["ADR;WORK;PREF",";;535 Pine Hill Road; Dunedin; New Zealand"], "EMAIL:info@DunedinDairy.co.nz", "PHOTO;ENCODING=BASE64;TYPE=PNG:iVBORw0KGgoAAAANSUh…rBxEPGWUUUYZRzwE4f8BxXEDXHU2cQkAAAAASUVORK5CYII=", "REV:20200424T195243Z", "END:VCARD"]
+    
+    document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length);
+    document.getElementById('email').innerHTML = someArray[5][1];
+    document.getElementById('phone').innerHTML = someArray[3][1];
+
+
 }
 
 // FUNCTIONS RELATED TO THE NEWS PAGE
@@ -84,7 +89,7 @@ function news() {
 function displayNews(news) {
     let newsContent = ""; // 'record' is one {} in the 'news' JSON array
     const addRecord = (record) => {
-        newsContent += "<tr><td> <img src=" + record.enclosureField.urlField + " height=400 width=300> </td>" + 
+        newsContent += "<tr><td> <img src=" + record.enclosureField.urlField + "> </td>" + 
         "<td><a href=" + record.linkField + ">" + record.titleField + "</a>" + 
         "<p>" + record.descriptionField + "<p>"  + record.pubDateField + "</td></tr>\n";
     }
@@ -118,8 +123,7 @@ function postComment() {
         }
     });
     const streamPromise = fetchPromise.then( (response) => response.json() );
-    streamPromise.then( (data) => console.log('Success:', data));
-}
+    streamPromise.then( (data) => {document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments'});
 
-// <td> has its own width attribute
+}
 
