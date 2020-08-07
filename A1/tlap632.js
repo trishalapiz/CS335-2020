@@ -66,12 +66,25 @@ function showVCard(data) {
     console.log(someArray);
     // someArray = [ ["BEGIN", "VCARD"], ["VERSION","2.1"], "ORG:Dunedin Dairy", "TEL;WORK;VOICE:+64 3 448 6256", ["ADR;WORK;PREF",";;535 Pine Hill Road; Dunedin; New Zealand"], "EMAIL:info@DunedinDairy.co.nz", "PHOTO;ENCODING=BASE64;TYPE=PNG:iVBORw0KGgoAAAANSUh…rBxEPGWUUUYZRzwE4f8BxXEDXHU2cQkAAAAASUVORK5CYII=", "REV:20200424T195243Z", "END:VCARD"]
     
-    document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length);
-    document.getElementById('email').innerHTML = someArray[5][1];
-    document.getElementById('phone').innerHTML = someArray[3][1];
+    // const address = "";
+    // const email = "";
+    // const phone = "";
 
+    // document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length);
+    // document.getElementById('email').innerHTML = someArray[5][1];
+    // document.getElementById('phone').innerHTML = someArray[3][1];
 
+    // document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length); 
+    // document.getElementById('email').innerHTML = "<a class=vcard href=mailto:" + someArray[5][1] + ">" + someArray[5][1] + "</a>";
+    // document.getElementById('phone').innerHTML = "<a class=vcard href=tel:" + someArray[3][1] + ">" + someArray[3][1] + "</a>";
+
+    // USING indexOf BECAUSE THE VCARD TESTED MAY NOT BE IN THE SAME ORDER
+    document.getElementById('address').innerHTML = someArray.indexOf("ADR;WORK;PREF")[1].slice(2,someArray.indexOf("ADR;WORK;PREF")[1].length); 
+    document.getElementById('email').innerHTML = "<a class=vcard href=mailto:" + someArray.indexOf("EMAIL")[1] + ">" + someArray.indexOf("EMAIL")[1] + "</a>";
+    document.getElementById('phone').innerHTML = "<a class=vcard href=tel:" + someArray.indexOf("TEL;WORK;VOICE")[1] + ">" + someArray.indexOf("TEL;WORK;VOICE")[1] + "</a>";
+    
 }
+   
 
 // FUNCTIONS RELATED TO THE NEWS PAGE
 function news() {
