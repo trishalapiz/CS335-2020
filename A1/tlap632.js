@@ -9,7 +9,7 @@ function home() {
 }
 
 // FUNCTIONS RELATED TO THE PRODUCTS PAGE
-function products() {
+function products() { // get product data
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "inline";
     document.getElementById('location').style.display = "none";
@@ -17,32 +17,28 @@ function products() {
     document.getElementById('guest').style.display = "none";
 
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items', {headers : {"Accept" : "application/json",}});
-    const streamPromise = fetchPromise.then( (response) => response.json() ); // returns JSON object "c519c8c8-5e56-4de6-b8a0-b2a3f4781eff"
+    const streamPromise = fetchPromise.then( (response) => response.json() ); 
     streamPromise.then( (data) => displayProducts(data) ); 
 }
 
-function displayProducts(products) { // CHANGE PRODUCT LAYOUT LATER
+function displayProducts(products) { // products = the array of product records
     const pic = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id="
     let itemContent = "";
-    // let itemContent = "<tr> <th>Image</th> <th>Title</th> <th>Origin</th> <th>Price</th> <th>Type</th>" // has headings
-    // let itemContent = "<tr> <td>Image</td> <td>Title</td> <td>Origin</td> <td>Price</td> <td>Type</td>" // has headings
+    // [{"ItemId":"248309242","Origin":"France","Price":"99.99","Title":"Fromage frais battu 7.8%MG 5 kg","Type":"Cheese"}]
     const addRecord = (record) => {
-    // itemContent += "<tr><td>" + "hello" + "</td><td>" + record.Origin + "</td><td>" + record.Price + "</td><td>" + record.Title + "</td><td>" + record.Type + "</td></tr>\n";
-    itemContent += "<tr><td><img src=" + pic + record.ItemId +" height=300 width=300> </td><td>" + record.Title + "</td><td>" + record.Origin + "</td><td>$" + record.Price + "</td><td>" + record.Type + "</td></tr>\n";
-    
-    // fetch("http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id={ID}", {headers : {"Accept" : "application/json",}}).then( (response) => response.json()).then( ( (data) => alert(data) ));
-  }
-  // "<img src"
-  // <img src=" + record.enclosureField.urlField + " height=300 width=300> 
+        itemContent += "<tr><td><img src=" + pic + record.ItemId + " height=300 width=300> </td><td>" 
+        + record.Title + "<br>" + record.Origin + "<br>$" + record.Price + "<br>" + record.Type + 
+        "<br><button type=submit class=buy>Buy Now</button>" +"</td></tr>\n";
+    }
   products.forEach(addRecord);
   document.getElementById('items').innerHTML = itemContent;
 }
 
-function searchProducts() {
+function searchProducts() { // retrieve products based on user search
     const input = document.getElementById('productSearch').value;
     const term ="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=" + input;
     const fetchPromise = fetch(term, {headers : {"Accept" : "application/json",}});
-    const streamPromise = fetchPromise.then( (response) => response.json() ); // returns JSON object "c519c8c8-5e56-4de6-b8a0-b2a3f4781eff"
+    const streamPromise = fetchPromise.then( (response) => response.json() ); 
     streamPromise.then( (data) => displayProducts(data) ); 
 }
 
@@ -53,6 +49,23 @@ function locations() {
     document.getElementById('location').style.display = "inline";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
+
+    const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard', {headers : {"Accept" : "application/json",}});
+    const streamPromise = fetchPromise.then( (response) => response.text() );
+    streamPromise.then( (data) => showVCard(JSON.stringify(data)));
+}
+
+function showVCard(data) {
+    // need to convert JSON object to JavaScript
+    // JSON.parse() converts a JSON string to a JavaScript string
+    const vCardLine = JSON.parse(data).split("\n"); 
+    const someArray = [];
+    const hello = [];
+    for (var i = 0; i < vCardLine.length; i++) { // length = 9
+      someArray.push(vCardLine[i].split(":")); // eg i = 0 "BEGIN:VCARD"
+    }
+    console.log(someArray);
+    // someArray = ["BEGIN:VCARD", "VERSION:2.1", "ORG:Dunedin Dairy", "TEL;WORK;VOICE:+64 3 448 6256", "ADR;WORK;PREF:;;535 Pine Hill Road; Dunedin; New Zealand", "EMAIL:info@DunedinDairy.co.nz", "PHOTO;ENCODING=BASE64;TYPE=PNG:iVBORw0KGgoAAAANSUh…rBxEPGWUUUYZRzwE4f8BxXEDXHU2cQkAAAAASUVORK5CYII=", "REV:20200424T195243Z", "END:VCARD"]
 }
 
 // FUNCTIONS RELATED TO THE NEWS PAGE
@@ -64,27 +77,20 @@ function news() {
     document.getElementById('guest').style.display = "none";
 
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news', {headers : {"Accept" : "application/json",}});
-    const streamPromise = fetchPromise.then( (response) => response.json() ); // returns JSON object "c519c8c8-5e56-4de6-b8a0-b2a3f4781eff"
+    const streamPromise = fetchPromise.then( (response) => response.json() ); 
     streamPromise.then( (data) => displayNews(data) );
-    
 }
 
 function displayNews(news) {
-
-//     // <table id="dairyNews"></table> WHERE NEWS IS POPULATED
-
-    // enclosureField.urlField is the IMAGE
-    let newsContent = "<tr> <td>Image</td> <td>Title</td> <td>Description</td> <td>Time</td> </tr>\n";
+    let newsContent = ""; // 'record' is one {} in the 'news' JSON array
     const addRecord = (record) => {
-        // newsContent += "<tr><td>" + record.descriptionField + "</td><td>" + record.titleField + "</td><td> <img src=" +  record.enclosureField.urlField + " height=300 width=300>  </td><td>" + record.pubDateField + "</td></tr>\n";
-        // newsContent += "<tr><td> <img src=" + record.enclosureField.urlField + " height=300 width=300>" + "<a href=" + record.enclosureField.linkField + ">" + </a>" + "</td><td>" + record.titleField + "</td><td>" + record.descriptionField + "</td><td>"  + record.pubDateField + "</td></tr>\n";
-        newsContent += "<tr><td> <img src=" + record.enclosureField.urlField + " height=300 width=300> </td>" + "<td><a href=" + record.linkField + ">" + record.titleField + "</a>" + "</td><td>" + record.descriptionField + "</td><td>"  + record.pubDateField + "</td></tr>\n";
-    
+        newsContent += "<tr><td> <img src=" + record.enclosureField.urlField + " height=400 width=300> </td>" + 
+        "<td><a href=" + record.linkField + ">" + record.titleField + "</a>" + 
+        "<p>" + record.descriptionField + "<p>"  + record.pubDateField + "</td></tr>\n";
     }
       news.forEach(addRecord);
     
-    document.getElementById('dairyNews').innerHTML = newsContent;
-    
+    document.getElementById('dairyNews').innerHTML = newsContent; 
 }
 
 // FUNCTIONS RELATED TO THE GUEST BOOK PAGE
@@ -94,4 +100,26 @@ function guestBook() {
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "inline";
+    
+    // retrieving comments
+    document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments';
 }
+
+function postComment() {
+    const message = document.getElementById('commentSpace').value; // the actual comment
+    const name = document.getElementById('nameSpace').value; // who posted
+    const comment = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/comment?name=" + name;
+
+    const fetchPromise = fetch(comment, {
+        method: "POST",
+        body: JSON.stringify(message),
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    });
+    const streamPromise = fetchPromise.then( (response) => response.json() );
+    streamPromise.then( (data) => console.log('Success:', data));
+}
+
+// <td> has its own width attribute
+
