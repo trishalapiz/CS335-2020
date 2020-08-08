@@ -56,35 +56,30 @@ function locations() {
 }
 
 function showVCard(data) {
-    // need to convert JSON object to JavaScript
-    // JSON.parse() converts a JSON string to a JavaScript string
     const vCardLine = JSON.parse(data).split("\n"); 
-    const someArray = [];
-    for (var i = 0; i < vCardLine.length; i++) { // length = 9
-      someArray.push(vCardLine[i].split(":")); // eg i = 0 "BEGIN:VCARD"
+    const someDict = {};
+
+    for (var i = 0; i < vCardLine.length; i++) {
+        let temp = vCardLine[i].split(":"); // ["ADR;WORK;PREF", ";;535 Pine Hill Road; Dunedin; New Zealand"]
+        let key = temp[0].split(";")[0]; //  [ ["ADR", "WORK", "PREF"],  ";;535 Pine Hill Road; Dunedin; New Zealand"]
+        // temp[1].split(";") = ["", "", "535 Pine Hill Road", " Dunedin", " New Zealand"]
+        let value;
+        if (key === "ADR") {
+            value = temp[1].slice(2, temp[1].length);
+            value = temp[1].split(";");
+            value = value.slice(2, value.length).join(', ');
+        } else {
+            value = temp[1]; 
+        }
+        
+        someDict[key] = value;
     }
-    console.log(someArray);
-    // someArray = [ ["BEGIN", "VCARD"], ["VERSION","2.1"], "ORG:Dunedin Dairy", "TEL;WORK;VOICE:+64 3 448 6256", ["ADR;WORK;PREF",";;535 Pine Hill Road; Dunedin; New Zealand"], "EMAIL:info@DunedinDairy.co.nz", "PHOTO;ENCODING=BASE64;TYPE=PNG:iVBORw0KGgoAAAANSUh…rBxEPGWUUUYZRzwE4f8BxXEDXHU2cQkAAAAASUVORK5CYII=", "REV:20200424T195243Z", "END:VCARD"]
-    
-    // const address = "";
-    // const email = "";
-    // const phone = "";
 
-    // document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length);
-    // document.getElementById('email').innerHTML = someArray[5][1];
-    // document.getElementById('phone').innerHTML = someArray[3][1];
-
-    // document.getElementById('address').innerHTML = someArray[4][1].slice(2,someArray[4][1].length); 
-    // document.getElementById('email').innerHTML = "<a class=vcard href=mailto:" + someArray[5][1] + ">" + someArray[5][1] + "</a>";
-    // document.getElementById('phone').innerHTML = "<a class=vcard href=tel:" + someArray[3][1] + ">" + someArray[3][1] + "</a>";
-
-    // USING indexOf BECAUSE THE VCARD TESTED MAY NOT BE IN THE SAME ORDER
-    document.getElementById('address').innerHTML = someArray.indexOf("ADR;WORK;PREF")[1].slice(2,someArray.indexOf("ADR;WORK;PREF")[1].length); 
-    document.getElementById('email').innerHTML = "<a class=vcard href=mailto:" + someArray.indexOf("EMAIL")[1] + ">" + someArray.indexOf("EMAIL")[1] + "</a>";
-    document.getElementById('phone').innerHTML = "<a class=vcard href=tel:" + someArray.indexOf("TEL;WORK;VOICE")[1] + ">" + someArray.indexOf("TEL;WORK;VOICE")[1] + "</a>";
-    
+    document.getElementById('locationDetails').innerHTML = "Find us at: " + someDict['ADR'] + "<br><br> Email us at: " +
+    "<a class=vcard href=mailto:" + someDict['EMAIL'] + ">" + someDict['EMAIL'] + "</a> <br><br> Or ring us on " + 
+    "<a class=vcard href=tel:" + someDict['TEL'] + ">" + someDict['TEL'] + 
+    "</a> <br><br> <a href=http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard>Add us to your contacts</a>";
 }
-   
 
 // FUNCTIONS RELATED TO THE NEWS PAGE
 function news() {
@@ -106,7 +101,8 @@ function displayNews(news) {
         "<td><a href=" + record.linkField + ">" + record.titleField + "</a>" + 
         "<p>" + record.descriptionField + "<p>"  + record.pubDateField + "</td></tr>\n";
     }
-      news.forEach(addRecord);
+    
+    news.forEach(addRecord);
     
     document.getElementById('dairyNews').innerHTML = newsContent; 
 }
@@ -136,7 +132,7 @@ function postComment() {
         }
     });
     const streamPromise = fetchPromise.then( (response) => response.json() );
-    streamPromise.then( (data) => {document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments'});
+    streamPromise.then( (data) => {document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments'}); // show comment straight away after it's posted
 
 }
 
