@@ -11,15 +11,27 @@
                   <xs:element name="Origin">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
+                        <xs:enumeration value="Bulgaria"/>
+                        <xs:enumeration value="Cyprus"/>
+                        <xs:enumeration value="Denmark"/>
+                        <xs:enumeration value="England"/>
                         <xs:enumeration value="France"/>
-                        <xs:enumeration value="New Zealand"/>
+                        <xs:enumeration value="Greece"/>
+                        <xs:enumeration value="Hungary"/>
+                        <xs:enumeration value="Iceland"/>
+                        <xs:enumeration value="India"/>
+                        <xs:enumeration value="Italy"/>
+                        <xs:enumeration value="Netherlands"/>
+                        <xs:enumeration value="NZ"/>
+                        <xs:enumeration value="Spain"/>
                         <xs:enumeration value="Sweden"/>
+                        <xs:enumeration value="Switzerland"/>
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Price" type="xs:decimal"/>
-                  <xs:element name="Title" type="xs:string"/>
-                  <xs:element name="Type" type="xs:string"/>
+                  <xs:element name="Price" type="xs:decimal" minOccurs="0"/>
+                  <xs:element name="Title" type="xs:string" minOccurs="0"/>
+                  <xs:element name="Type" type="xs:string" minOccurs="0"/>
               </xs:sequence>
           </xs:complexType>
         </xs:element>
