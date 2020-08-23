@@ -1,0 +1,47 @@
+<!-- ItemId becomes 'id', which is an attribute
+Origin also becomes an attribute -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- <xs:complexType name="productType">
+
+</xs:complexType> -->
+
+<!-- for types, could use CHOICE -->
+
+  <xs:element name="ArrayOfItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Item" maxOccurs="unbounded"> <!-- think of this as an entity -->
+          <xs:complexType>
+              <xs:sequence> <!-- below are like the attributes of the entity -->
+                    <xs:element name="Price" type="xs:decimal"/>
+                    <xs:element name="Title" type="xs:string"/>
+                    <xs:element name="Types" type="xs:string">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Type"/>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="Cheese"/>
+                                            <xs:enumeration value="Milk"/>
+                                            <xs:enumeration value="Butter"/>
+                                            <xs:enumeration value="Cream"/>
+                                            <xs:enumeration value="Butter"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+              </xs:sequence>
+            <!-- ATTRIBUTES GO HERE -->
+            <xs:attribute name="id" type:"xs:integer" use="required"/>
+            <!-- change so that values are restricted -->
+            <xs:attribute name="origin" type:"xs:string" use="optional" default="NZ"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
