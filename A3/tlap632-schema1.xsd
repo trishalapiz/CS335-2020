@@ -23,6 +23,7 @@
                         <xs:enumeration value="Italy"/>
                         <xs:enumeration value="Netherlands"/>
                         <xs:enumeration value="NZ"/>
+                        <xs:enumeration value="Portugal"/>
                         <xs:enumeration value="Spain"/>
                         <xs:enumeration value="Sweden"/>
                         <xs:enumeration value="Switzerland"/>
