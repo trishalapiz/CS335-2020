@@ -93,7 +93,7 @@ For example, the following XML product lists should not conform to your schema. 
 
 </xs:schema> -->
 
-<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="Item">
@@ -116,9 +116,9 @@ For example, the following XML product lists should not conform to your schema. 
     </xs:complexType>
   </xs:element>
 
-</xs:schema>
+</xs:schema> -->
 
-<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:complexType name="ItemArrayType">
@@ -139,7 +139,7 @@ For example, the following XML product lists should not conform to your schema. 
 
   <xs:element name="ArrayOfItem" type="ItemArrayType"/>
 
-</xs:schema>
+</xs:schema> -->
 
 <!-- <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -158,4 +158,64 @@ For example, the following XML product lists should not conform to your schema. 
 </xs:sequence>
 </xs:complexType>
 <xs:element name="phonebook" type="phoneBookType"/>
+</xs:schema> -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="ItemArrayType">
+    <xs:sequence>
+      <xs:element name="Item" type="itemType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemType">
+    <xs:sequence>
+      <xs:element name="ItemId" type="xs:integer"/>
+      <xs:element name="Origin" type="xs:string"/>
+        <xs:complexType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="France"/>
+            <xs:enumeration value="New Zealand"/>
+            <xs:enumeration value="Sweden"/>
+          </xs:restriction>
+        </xs:complexType>
+      <xs:element name="Price" type="xs:decimal"/>
+      <xs:element name="Title" type="xs:string"/>
+      <xs:element name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="ArrayOfItem" type="ItemArrayType"/>
+
+</xs:schema>
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="countryType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="France"/>
+    <xs:enumeration value="New Zealand"/>
+    <xs:enumeration value="Sweden"/>
+  </xs:restriction>
+</xs:simpleType>
+
+  <xs:element name="ArrayOfItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Item" maxOccurs="unbounded"> <!-- think of this as an entity -->
+          <xs:complexType>
+              <xs:sequence> <!-- below are like the attributes of the entity -->
+                  <xs:element name="ItemId" type="xs:integer"/>
+                  <xs:element name="Origin" type="countryType"/>
+                  <xs:element name="Price" type="xs:decimal"/>
+                  <xs:element name="Title" type="xs:string"/>
+                  <xs:element name="Type" type="xs:string"/>
+              </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema> -->
