@@ -1,50 +1,15 @@
-<!-- ItemId becomes 'id', which is an attribute
-Origin also becomes an attribute -->
-
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<!-- <xs:simpleType name="productType">
+<xs:simpleType name="productType">
     <xs:restriction base="xs:string">
         <xs:enumeration value="Cheese"/>
         <xs:enumeration value="Milk"/>
         <xs:enumeration value="Butter"/>
         <xs:enumeration value="Cream"/>
-        <xs:enumeration value="Butter"/>
+        <xs:enumeration value="Yogurt"/>
     </xs:restriction>
-</xs:simpleType> -->
-
-<!-- <xs:complexType name="productType">
-    <xs:complexContent>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Cheese" maxOccurs="1"/>
-            <xs:enumeration value="Milk" maxOccurs="1"/>
-            <xs:enumeration value="Butter" maxOccurs="1"/>
-            <xs:enumeration value="Cream" maxOccurs="1"/>
-            <xs:enumeration value="Butter" maxOccurs="1"/>
-        </xs:restriction>
-    </xs:complexContent>
-</xs:complexType> -->
-
-<!-- <xs:complexType name="productType">
-    <xs:all>
-            <xs:enumeration value="Cheese" maxOccurs="1"/>
-            <xs:enumeration value="Milk" maxOccurs="1"/>
-            <xs:enumeration value="Butter" maxOccurs="1"/>
-            <xs:enumeration value="Cream" maxOccurs="1"/>
-            <xs:enumeration value="Butter" maxOccurs="1"/>
-    </xs:all>
-</xs:complexType> -->
-
-<!-- <xs:simpleType name="productType">
-    <xs:restriction base="xs:string">
-        <xs:enumeration value="Cheese" maxOccurs="1"/>
-        <xs:enumeration value="Milk" maxOccurs="1"/>
-        <xs:enumeration value="Butter" maxOccurs="1"/>
-        <xs:enumeration value="Cream" maxOccurs="1"/>
-        <xs:enumeration value="Butter" maxOccurs="1"/>
-    </xs:restriction>
-</xs:simpleType> -->
+</xs:simpleType>
 
 <xs:complexType name="itemType">
     <xs:sequence>
@@ -52,12 +17,14 @@ Origin also becomes an attribute -->
         <xs:element name="Title" type="xs:string" minOccurs="0"/>
         <xs:element name="Types">
             <xs:complexType>
-                <xs:element name="Type" type="productType" maxOccurs="unbounded"/>
+                <xs:sequence>
+                    <xs:element name="Type" type="productType" maxOccurs="unbounded"/>
+                </xs:sequence>
             </xs:complexType>
         </xs:element>
     </xs:sequence>
-    <xs:attribute name="id" type:"xs:integer" use="required"/>
-    <xs:attribute name="origin" type:"xs:string" use="optional" default="NZ"/>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="origin" type="xs:string" use="optional" default="NZ"/>
 </xs:complexType>
 
   <xs:element name="ArrayOfItem">
