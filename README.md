@@ -1,2 +1,2 @@
-# CS335-2020 - Human-Computer Interaction
-Human behaviour and humans' expectations of computers. Computer interfaces and the interaction between humans and computers. The significance of the user interface, interface design and user centred design process in software development. Interface usability evaluation methodologies and practice. Includes a group development and evaluation project using current implementation techniques and tools.
+# CS335-2020 - Functional Programming and Distributed Services
+Covers functional programming concepts, with applications to data integration from heterogeneous and asynchronous collections. Building web and cloud clients and services, with emphasis on high-level declarative and functional techniques. Dynamic web applications. Security and performance as overarching factors of web application development.
