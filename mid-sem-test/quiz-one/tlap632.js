@@ -15,11 +15,12 @@ function fetchStaff() { // fetch staff data from server
     const url = "http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url=https://unidirectory.auckland.ac.nz/rest/search?orgFilter=MATHS";
     const fetchPromise = fetch(url, {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.json() ); 
+    // streamPromise.then( (data) => showStaff(data) ); 
     streamPromise.then( (data) => showStaff(data) ); 
 }
 
-function showStaff(staffRecord) {
-    console.log(staffRecord); // check if it got passed through successfully
+function showStaff(staffRecords) {
+    console.log(staffRecords); // check if it got passed through successfully
 
     // https://unidirectory.auckland.ac.nz/people/imageraw/{upi}/{imageId}/biggest 
     const pic = "https://unidirectory.auckland.ac.nz/people/imageraw/";
@@ -30,15 +31,31 @@ function showStaff(staffRecord) {
     
     let staffContent = "";
 
+    // const addRecord = (record) => {
+    //     staffContent += "<tr><td id=col1><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
+    //         "<td id=col2><h3 id=staffname>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "</h3> <br>" + record.jobtitles[0] + " in " +
+    //         record.orgunitnames[0] + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
+    //         "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>" +
+    //         "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
+    // }
+
     const addRecord = (record) => {
-        staffContent += "<tr><td><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
-            "<td><br>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "<br>" + record.jobtitles + " in "
-            record.orgunitnames + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
+        staffContent += "<tr><td id=col1><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
+            "<td id=col2><h3 id=staffname>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "</h3> <br>" + record.jobtitles[0] + " in " +
+            record.orgunitnames[0] + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
             "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>" +
             "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
     }
+    // fetch vcard details
+    const url = "https://dividni.com/cors/CorsProxyService.svc/proxy?url=https://unidirectory.auckland.ac.nz/people/vcard/j-sneyd";
+    const fetchPromise = fetch(url, {headers : {"Accept" : "application/json",}});
+    const streamPromise = fetchPromise.then( (response) => response.text() ); 
+    streamPromise.then( (data) => console.log(JSON.stringify(data)) ); 
 
-    staffRecord.forEach(addRecord); // record in 'addRecord' is each [] in the array returned by the stream, which is assigned to the const 'staffRecord'
+
+
+
+    staffRecords["list"].forEach(addRecord); // record in 'addRecord' is each [] in the array returned by the stream, which is assigned to the const 'staffRecord'
     document.getElementById('stafflist').innerHTML = staffContent; 
 }
 
@@ -86,6 +103,44 @@ showHome();
 // profileUrl: (2) ["j-sneyd", "jsne010"]
 // title: "Professor"
 // whenLastUpdated: "2020-08-03T02:13:48Z"
+
+// EXAMPLE OF UNDEFINED TITLE
+//
+// allOrgUnits: (2) ["MATHS", "SCIFAC"]
+// allStaffUnits: (2) ["MATHS", "SCIFAC"]
+// cat: "person"
+// emailAddresses: ["jonny.stephenson@auckland.ac.nz"]
+// extn: "84557"
+// firstname: "Jonny"
+// hasAlternativeContactInfo: false
+// id: "11110692External"
+// imageId: "11139658"
+// includesPhd: false
+// jobcodes: ["A00800"]
+// jobtitles: ["Professional Teaching Fellow"]
+// lastname: "Stephenson"
+// legalFirstName: "Jonathan"
+// legalLastName: "Stephenson"
+// legalMiddleName: "Ralph"
+// mediaContact: false
+// names: (2) ["Jonny Stephenson", "Jonathan Stephenson"]
+// onlyPhd: false
+// orgunitids: ["MATHS"]
+// orgunitnames: ["Mathematics"]
+// personId: 11110692
+// personType: "External"
+// positionIds: [0]
+// profileId: 11110695
+// profileUrl: (2) ["jonny-stephenson", "jste980"]
+//     NO TITLE
+// whenLastUpdated: "2020-07-14T00:05:15Z"
+
+
+
+
+
+
+
 
 //  VCARD INFO
 //

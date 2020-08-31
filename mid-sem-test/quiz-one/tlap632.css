@@ -40,12 +40,12 @@ html {
 /* HOME PAGE */
   #home {
     float: left;
-    width: 80%;
+    width: 98%;
     text-align: center;
     color: darkblue;
-    background-color: yellow;
+    /* background-color: yellow; */
     font-size: large;
-    padding: 10%;
+    padding: 1%;
 }
 
 /* STAFF PAGE */
@@ -54,7 +54,7 @@ html {
     width: 80%;
     text-align: center;
     color: darkblue;
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     font-size: large;
     padding: 0% 10%;
 }
@@ -69,6 +69,11 @@ html {
 #stafflist{
     width: 80%;
     margin: 0% 10%;
-    color: darkgreen;
+    color: darkBlue;
     position: relative;
 }
+
+#stafflist td {
+    border:1px solid darkBlue;
+}
+

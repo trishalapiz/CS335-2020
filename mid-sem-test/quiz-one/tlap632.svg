@@ -55,10 +55,24 @@
     C 213.333 189.703,208.198 185.656,203.058 186.903" fill="#ffffff" />
 
     <!-- USE ABOVE TO 'TRACE' -->
+    <!-- <g clip-path="url(#hollow-inner)">
+        <circle cx='200' cy='200' r='120' stroke='black' fill='gold'/>
+    </g> -->
+    
+    <circle cx='200' cy='200' r='120' stroke='black' fill='gold'/>
+    <circle cx='200' cy='200' r='80' stroke='pink' fill='azure'/>
+    <circle cx='200' cy='200' r='20' stroke='red' fill='lime'/>
+    <path d="M203.058 186.903 
+    C 193.647 189.186,195.319 203.333,205.000 203.333 
+    C 209.498 203.333,213.333 199.498,213.333 195.000 
+    C 213.333 189.703,208.198 185.656,203.058 186.903" fill="#ffffff" />
 
-    <!-- M = start point -->
-    <path d="M115.083 13.357 
-    A 30 20 0 0 1 415.083 13.357 "/>
+<defs>
+    <clipPath id="hollow-inner">
+        <circle cx='200' cy='200' r='80' stroke='pink' fill='azure'/> <!-- what needs to be 'cut' // could be used for clipPath? -->
+    </clipPath>
+</defs>
+    
 
 </svg>
 
