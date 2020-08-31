@@ -31,26 +31,47 @@ function showStaff(staffRecords) {
     
     let staffContent = "";
 
-    // const addRecord = (record) => {
-    //     staffContent += "<tr><td id=col1><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
-    //         "<td id=col2><h3 id=staffname>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "</h3> <br>" + record.jobtitles[0] + " in " +
-    //         record.orgunitnames[0] + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
-    //         "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>" +
-    //         "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
-    // }
-
     const addRecord = (record) => {
         staffContent += "<tr><td id=col1><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
             "<td id=col2><h3 id=staffname>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "</h3> <br>" + record.jobtitles[0] + " in " +
             record.orgunitnames[0] + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
-            "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>" +
-            "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
+            "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>";
+            
     }
+
+    // ADD VCARD
+    // "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
+
     // fetch vcard details
     const url = "https://dividni.com/cors/CorsProxyService.svc/proxy?url=https://unidirectory.auckland.ac.nz/people/vcard/j-sneyd";
     const fetchPromise = fetch(url, {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.text() ); 
-    streamPromise.then( (data) => console.log(JSON.stringify(data)) ); 
+    streamPromise.then( (data) => {
+        const vCardLine = JSON.parse(data).split("\n"); 
+        const someDict = {};
+
+        for (var i = 0; i < vCardLine.length; i++) {
+            let temp = vCardLine[i].split(":"); // ["ADR;WORK;PREF", ";;535 Pine Hill Road; Dunedin; New Zealand"]
+            let key = temp[0].split(";")[0]; //  [ ["ADR", "WORK", "PREF"],  ";;535 Pine Hill Road; Dunedin; New Zealand"]
+            // temp[1].split(";") = ["", "", "535 Pine Hill Road", " Dunedin", " New Zealand"]
+            let value;
+            if (key === "ADR") {
+                value = temp[1].slice(2, temp[1].length);
+                value = temp[1].split(";");
+                value = value.slice(2, value.length).join(', ');
+            } else {
+                value = temp[1]; 
+            }
+            
+            someDict[key] = value;
+        }
+
+        document.getElementById(col2).innerHTML += "Call: <a href=tel:" + someDict['TEL'] + ">" + someDict['TEL'] + "</a>";
+
+
+    } ); 
+
+    
 
 
 
