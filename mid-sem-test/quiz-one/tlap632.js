@@ -1,0 +1,100 @@
+// HOME PAGE
+function showHome() {
+    document.getElementById('home').style.display = "inline";
+    document.getElementById('staff').style.display = "none";
+}
+
+// FUNCTIONS RELATED TO THE STAFF PAGE
+function fetchStaff() { // fetch staff data from server
+    // http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url={URL}
+    // https://dividni.com/cors/CorsProxyService.svc/proxy?url={URL}
+    // https://unidirectory.auckland.ac.nz/rest/search?orgFilter=MATHS
+    document.getElementById('home').style.display = "none";
+    document.getElementById('staff').style.display = "inline";
+
+    const url = "http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url=https://unidirectory.auckland.ac.nz/rest/search?orgFilter=MATHS";
+    const fetchPromise = fetch(url, {headers : {"Accept" : "application/json",}});
+    const streamPromise = fetchPromise.then( (response) => response.json() ); 
+    streamPromise.then( (data) => showStaff(data) ); 
+}
+
+function showStaff(staffRecord) {
+    console.log(staffRecord); // check if it got passed through successfully
+
+    // https://unidirectory.auckland.ac.nz/people/imageraw/{upi}/{imageId}/biggest 
+    const pic = "https://unidirectory.auckland.ac.nz/people/imageraw/";
+    const vcard = "https://unidirectory.auckland.ac.nz/people/vcard/";
+    
+    // record.profileUrl[1] gives the upi for the image
+    // record.profileUrl[0] gives the upi for the actual vcard content
+    
+    let staffContent = "";
+
+    const addRecord = (record) => {
+        staffContent += "<tr><td><img src=" + pic + record.profileUrl[1] + "/" + record.imageId + "/biggest> </td>" +
+            "<td><br>" + record.title + ' ' + record.firstname + ' ' + record.lastname + "<br>" + record.jobtitles + " in "
+            record.orgunitnames + "<br><br>" + "<strong>Contact Details:</strong><br><br>" + 
+            "Email: <a href=mailto:" + record.emailAddresses + ">" + record.emailAddresses + "</a><br><br>" +
+            "<a href=" + vcard + record.profileUrl[0] + ">Add " + record.title + ' ' + record.firstname + ' ' + record.lastname + "\'s details to your contacts</a>" + "</td></tr>\n";
+    }
+
+    staffRecord.forEach(addRecord); // record in 'addRecord' is each [] in the array returned by the stream, which is assigned to the const 'staffRecord'
+    document.getElementById('stafflist').innerHTML = staffContent; 
+}
+
+function staffContact() { // JUST AN EXAMPLE
+    // : https://unidirectory.auckland.ac.nz/people/vcard/{upi} 
+    const url = "https://dividni.com/cors/CorsProxyService.svc/proxy?url=https://unidirectory.auckland.ac.nz/people/vcard/j-sneyd";
+    const fetchPromise = fetch(url, {headers : {"Accept" : "application/json",}});
+    const streamPromise = fetchPromise.then( (response) => response.text() ); 
+    streamPromise.then( (data) => console.log(JSON.stringify(data)) ); 
+
+}
+
+showHome();
+// +64 9 923 7474
+// jsne010@aucklanduni.ac.nz
+
+// 32nd RECORD:
+//
+// allOrgUnits: (2) ["MATHS", "SCIFAC"]
+// allStaffUnits: (2) ["MATHS", "SCIFAC"]
+// cat: "person"
+// emailAddresses: ["jsne010@aucklanduni.ac.nz"]
+// extn: "87474"
+// firstname: "James"
+// hasAlternativeContactInfo: false
+// id: "4198360External"
+// imageId: "10289392"
+// includesPhd: false
+// jobcodes: ["A00294"]
+// jobtitles: ["Professor"]
+// lastname: "Sneyd"
+// legalFirstName: "A"
+// legalLastName: "Sneyd"
+// legalMiddleName: "James Robert"
+// mediaContact: true
+// mediaKeywords: (2) ["Nonlinear dynamical systems", "Mathematical psychology"]
+// names: (2) ["James Sneyd", "A Sneyd"]
+// onlyPhd: false
+// orgunitids: ["MATHS"]
+// orgunitnames: ["Mathematics"]
+// personId: 4198360
+// personType: "External"
+// positionIds: [0]
+// profileId: 4256045
+// profileUrl: (2) ["j-sneyd", "jsne010"]
+// title: "Professor"
+// whenLastUpdated: "2020-08-03T02:13:48Z"
+
+//  VCARD INFO
+//
+// "BEGIN:VCARD\n
+// VERSION:3.0\n
+// N:Sneyd;James;;Prof;;\n
+// FN:James Sneyd\n
+// ORG:Mathematics\n
+// TITLE:Professor\n
+// TEL;TYPE=WORK,VOICE:+6499237474\n
+// ADR;TYPE=WORK:;;38 PRINCES ST,AUCKLAND,1010,New Zealand\n
+// EMAIL;TYPE=PREF,INTERNET:sneyd@math.auckland.ac.nz\nREV:01200831T203044Z\nEND:VCARD\n"
