@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="shortcut icon" href="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png" />
+        <title>Dunedin Dairy</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="tlap632.css">
+        <script async type ="text/javascript" src="tlap632.js"></script> 
+    </head>
+
+    <body>
+        <div class="header"> <!-- the green band at the top of the page -->
+            <div class="heading"> 
+                <img id="logo" src="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png" width="100" height="100" alt="Dunedin Dairy logo" title="Home" onclick="home()">
+            </div>
+
+            <!-- NAVIGATION -->
+            <div id="tabs">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" class="links" onclick="products()">Products &#128717;</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="links" onclick="locations()">Location &#128205;</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="links" onclick="news()">News &#128240;</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="links" onclick="guestBook()">Guest Book &#128214;</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="login">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" id="user" onclick="register()">Register &#128100;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+                                <!-- THE ACTUAL CONTENT -->
+        
+        <!-- HOME PAGE --> 
+        <section id="home"> 
+            <h1 id="greeting">Welcome to Dunedin Dairy</h1> 
+            <h3><i>The pride of the South and leading dairy in New Zealand</i></h3>
+            <p>You're sure to find a great range of dairy products with a great bargain!
+                <p>Fresh milk, premium butter and cheese, you name it, we got it!
+            </p>
+            <p><br>You can visit us <a href="javascript:void(0)" id="fromHome" onclick="locations()">in-store</a> or buy online, whichever suits you!</p> <!-- in-store = click on 'Locations'-->
+        </section> 
+
+        <!-- Products section -->
+        <section id="products"> 
+            <h1>Our Products</h1>
+            <input type="text" onkeyup="searchProducts()" id="productSearch" placeholder="&#128269; search for a product"> 
+            <table id="items"></table>
+        </section>
+
+        <!-- Location section -->
+        <section id="location"> <!-- content is displayed by showVCard() -->
+            <img src="http://redsox.uoa.auckland.ac.nz/ds/map.png" id="map" alt="pic of Dunedin Dairy on a map">
+            <div id="contactDetails">
+                <p id="locationDetails"></p>
+            </div>
+        </section>
+
+        <!-- News section -->
+        <section id="news"> 
+            <h1>Dunedin Dairy News</h1>
+            <table id="dairyNews"></table>
+        </section>
+
+        <!-- Guest section -->
+        <section id="guest"> 
+            <h1>Please sign our guest book:</h1><br>
+            <table id="inputs">
+                <tr>
+                    <td id="col1">
+                        <input type="text" id="commentSpace" placeholder="Enter your comment here">
+                    </td>
+                    <td id="col2">
+                        <label for="nameSpace" id="label">Your Name:</label><br>
+                        <input type="text" id="nameSpace" placeholder="Enter your name here">
+                        <button type="submit" id="send" onclick="postComment()">Submit Comment</button>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <hr>
+            <br><br<p id="entryHeading"><i>Recent entries:</i></p>
+            <iframe id="book"> </iframe>
+        </section>
+
+        <!-- Registration section -->
+        <section id="register">
+            <h1>User Registration</h1>
+            <div id="signup">
+                <h3>SIGN UP</h3>
+                <p>Please enter your details below to <strong>sign up</strong> and buy our products online!</p>
+                
+                <div id="separate">
+
+                    <div id="left">
+                        <label for="firstName" id="label">First Name:</label>
+                        <br>
+                        <input type="text" id="firstName" placeholder="Enter your first name"> 
+                    </div>
+
+
+                    <div id="right">
+                        <label for="lastName" id="label">Last Name:</label>
+                        <br>
+                        <input type="text" id="lastName" placeholder="Enter your last name"> 
+                    </div>
+
+                </div>
+
+                <label for="address" id="label">Address:</label>
+                <br>
+                <input type="text" id="address" placeholder="Enter your address"> 
+            </div>
+            <div id="signin">
+                <h3>SIGN IN</h3>
+                <p>Please enter your details below to <strong>sign in</strong> and buy our products online!</p>
+                <label for="username" id="label">Username:</label>
+                <!-- <br> -->
+                <input type="text" id="username" placeholder="username"> 
+                <br>
+                <br>
+                <label for="password" id="label">Password:</label>
+                <!-- <br> -->
+                <input type="password" id="password" placeholder="password"> 
+                <br>
+                <br>
+                <button type="submit" id="logon" onclick="">Sign In</button>
+            </div>
+            
+        </section>
+    </body>
+</html>

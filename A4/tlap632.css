@@ -1,0 +1,422 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Helvetica', sans-serif;
+    background-color: rgb(249, 253, 245);
+}
+
+.header { /* the business name and tabs */
+    background-color: rgb(186, 231, 144);
+    float: left;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position: relative;
+    margin-bottom: 1%;
+    overflow-x: visible;
+}
+
+#logo {
+    cursor: pointer;
+}
+
+.heading { /* CONTAINER THAT THE DD LOGO IS IN */
+    float: left;
+    margin: 0% 1% 0% 5%; /* top right bottom left */
+    /* background-color: cornflowerblue; */
+}
+
+/* NAVIGATION */
+#tabs {
+    width: 60%;
+    float: left;
+    margin-top: 1.5%;
+    /* background-color: brown; */
+}
+
+li {
+    display: inline;
+    padding: 5%;
+    list-style-type: none;
+}
+
+.links { /* .links is the 4 <a> tags */
+    font-weight: bold;
+    color: darkgreen;
+    text-decoration: none;
+    
+}
+
+#user {
+    margin-left: 36%;
+    font-weight: bold;
+    color: darkgreen;
+    text-decoration: none;
+}
+
+/* fromHome is the id for the <a> linked to the 'locations' page */
+#fromHome {
+    text-decoration: none;
+    font-weight: bold;
+    color: darkgreen;
+} 
+
+#login {
+    width: 20%;
+    float: right;
+    /* background-color: azure; */
+    margin-top: 1.5%;
+    margin-right: 5%;
+}
+
+                                        /* THE ACTUAL CONTENT */
+
+#home {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: darkgreen;
+    font-size: large;
+    padding: 10%;
+    /* background-color: blueviolet; */
+}
+
+#greeting {
+    text-align: center;
+    color: darkgreen;
+}
+
+                                        /* PRODUCTS PAGE */
+#products {
+    float: left;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    color: darkgreen;
+    font-size: large;
+    display: none;
+}
+
+#productSearch {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 1%;
+    padding: 1%;
+}
+
+#items, #dairyNews{
+    width: 80%;
+    margin: 0% 10%;
+    color: darkgreen;
+    position: relative;
+}
+
+#items td { 
+    width:auto; 
+    border:1px solid darkGreen;
+} 
+
+
+                                        /* LOCATIONS PAGE */
+#location {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: darkGreen;
+    font-size: large;
+    display: none;
+}
+
+#details td {
+    padding:0%;
+    width: 10%;
+    border:1px solid darkGreen;
+}
+
+#details {
+    float: left;
+    position: relative;
+}
+
+.vcard:hover {
+    color: rgb(65, 170, 65);
+}
+
+#map { /* the pic of the map */
+    width: 600px;
+    height: 425px;
+    margin-bottom: 1%;
+}
+
+                                        /* NEWS PAGE */
+#news {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: darkgreen;
+    font-size: large;
+    display: none;
+}
+
+#dairyNews td {
+    padding:0%;
+    width: auto;
+    border:1px solid darkGreen;
+}
+
+#dairyNews img {
+    width: 30vh;
+}
+
+                                        /* GUEST BOOK PAGE */
+#guest {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color:darkgreen;
+    font-size: large;
+    display: none;
+}
+
+#inputs {
+    width: 100%;
+}
+
+#inputs #col1 {
+    width: 60%;
+}
+
+#commentSpace, #address {
+    width: 100%;
+    padding: 5%;
+}
+
+#send {
+    font-size: small;
+}
+
+#entryHeading {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+#book {
+    width: 100%;
+    height: 500px;
+}
+
+                                        /* REGISTER PAGE */
+#register {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: darkGreen;
+    font-size: large;
+    display: none;
+    /* background-color: greenyellow; */
+    /* padding: 5% 10%; */
+}
+
+#signup {
+    /* background-color: cornflowerblue; */
+    width: 40%;
+    height: 40%;
+    /* margin-top: 3%; */
+    margin-left: 7%;
+    float: left;
+    text-align: center;
+}
+
+#signin {
+    /* background-color: lemonchiffon; */
+    width: 40%;
+    height: 40%;
+    float: right;
+    /* margin-top: 3%; */
+    margin-right: 7%;
+    text-align: center;
+}
+
+#separate {
+    /* background-color: darkgoldenrod; */
+    margin-bottom: 3%;
+    /* border: 3px solid pink; FOR DEBUGGING */
+    width: 100%;
+    height: 50%;
+    float: left;
+}
+
+#left {
+    /* background-color: rgb(238, 241, 28); */
+    width: 50%;
+    float: left;
+}
+
+#right {
+    /* background-color: rgb(68, 219, 212); */
+    width: 50%;
+    float: left;
+}
+
+                                    /* RESPONSIVE SCREENS */
+/* 320px = smallest mobile width */
+@media screen and (max-width: 1075px) {
+    .links {
+       padding: 2% 4%; 
+    }
+
+    #tabs {
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 750px) { /* half of desktop screen */
+    .links {
+       padding: 2% 3%; 
+    }
+
+    #tabs {
+        width: 78%;
+    }
+
+    
+}
+
+@media screen and (max-width: 650px) { 
+    .links {
+       padding: 2% 3%; 
+    }
+
+    #tabs {
+        width: 78%;
+    }
+}
+
+@media screen and (max-width: 640px) { 
+    .links {
+       padding: 2% 13%; 
+    }
+
+    #tabs {
+        width: 68%;
+    }
+}
+
+@media screen and (max-width: 583px) { 
+    .links {
+       padding: 2% 10%; 
+    }
+
+    #tabs {
+        width: 68%;
+    }
+
+    #map {
+        width: 583px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 460px) { 
+    .links {
+       padding: 2% 5%; 
+    }
+
+    #tabs {
+        width: 68%;
+    }
+
+    #map {
+        width: 460px;
+        height: auto;
+    }
+
+    #items, #dairyNews {
+        font-size: xx-small;
+    }
+
+    #items img {
+        width: 100px;
+        height: 100px;
+    }
+
+    #dairyNews img {
+        width: 20vh;
+    }
+
+}
+
+@media screen and (max-width: 400px) { /* iphone */
+    .links {
+       padding: 2% 3%; 
+    }
+
+    #tabs {
+        width: 65%;
+    }
+
+    #map {
+        width: 400px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 360px) { 
+    .links {
+       padding: 2% 1%; 
+    }
+
+    #tabs {
+        width: 60%;
+    }
+
+    #map {
+        width: 360px;
+        height: auto;
+    }
+
+    #locationDetails {
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width: 320px) { 
+    .links {
+       font-size: smaller;
+    }
+
+    #tabs {
+        width: 60%;
+    }
+
+    #map {
+        width: 320px;
+        height: auto;
+    }
+
+    #locationDetails {
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width: 320px) { /* Galaxy Fold when testing on Google Chrome */
+    .links {
+       font-size: small;
+    }
+
+    #tabs {
+        width: 55%;
+    }
+
+    #map {
+        width: 280px;
+        height: auto;
+    }
+
+    #locationDetails {
+        font-size: small;
+    }
+}
