@@ -45,6 +45,6 @@ that represents the icon. For example, the icons used in this specification are 
 1. You are not allowed to use any libraries or frameworks. (Why oh why?)
 2. The application should contain a single HTML page (named UPI.html) where UPI is your personal login name (such as jbon007).
 3. The application should work on any modern browser (such as Chrome, Safari and Edge).
-4 .The application should work on small screen devices. You can test this by making your browser window narrow.
+4. The application should work on small screen devices. You can test this by making your browser window narrow.
 
 This application should be of a professional quality to attract full marks. You should pay attention to details.
