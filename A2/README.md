@@ -16,3 +16,6 @@ Professor Willow thinks it is an adjaceny matrix of a graph, and wants you to he
 To this end, write a single-page web application that consumes this adjaceny matrix, and renders the corresponding graph in SVG format. <br/> <br/> 
 For verification, include the source matrix below the graph.
 
+## The files ##
+
+The submission files of Part One is tlap632.svg, and the files for Part Two are tlap632.html **and** tlap632.js
