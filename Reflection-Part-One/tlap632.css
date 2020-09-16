@@ -22,11 +22,11 @@ header {
 }
 
 #month {
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 50%;
     width: 100%;
     float: left;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
     text-align: center;
     margin-bottom: 2%;
 }
@@ -40,6 +40,19 @@ header {
     text-align: center;
 }
 
-#infograph {
-    background-color: blueviolet;
+#news td{
+    border-right: 1px solid black;
 }
+
+#news th {
+    border: 1px solid black;
+}
+
+#news {
+    width: 100%;
+    border: 1px solid black;
+}
+
+/* #infograph {
+    background-color: blueviolet;
+} */
