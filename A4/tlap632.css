@@ -30,7 +30,7 @@ html {
 
 /* NAVIGATION */
 #tabs {
-    width: 70%;
+    width: 75%;
     float: left;
     margin-top: 1.5%;
     /* background-color: brown; */
@@ -251,15 +251,19 @@ li {
 
 #left {
     /* background-color: rgb(238, 241, 28); */
-    width: 50%;
+    width: 100%;
     float: left;
 }
 
-#right {
-    /* background-color: rgb(68, 219, 212); */
+#name {
     width: 50%;
-    float: left;
 }
+
+/* #right {
+    background-color: rgb(68, 219, 212);
+    width: 100%;
+    float: left;
+} */
 
                                     /* RESPONSIVE SCREENS */
 /* 320px = smallest mobile width */

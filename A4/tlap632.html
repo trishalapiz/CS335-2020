@@ -31,14 +31,14 @@
                         <a href="javascript:void(0)" class="links" onclick="guestBook()">Guest Book &#128214;</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="links" onclick="register()">Register &#128100;</a>
+                        <a href="javascript:void(0)" class="links" onclick="register()">User details &#128100;</a>
                     </li>
                 </ul>
             </div>
 
-            <div id="login">
+            <!-- <div id="login">
                 <p>Welcome Trisha!</p>
-            </div>
+            </div> -->
         </div>
 
                                 <!-- THE ACTUAL CONTENT -->
@@ -105,16 +105,16 @@
                 <div id="separate">
 
                     <div id="left">
-                        <label for="firstName" id="label">First Name:</label>
-                        <br>
-                        <input type="text" id="firstName" placeholder="Enter your first name"> 
+                        <label for="newName" id="label">Name:</label>
+                        
+                        <input type="text" id="newName" placeholder="Enter your name"> 
                     </div>
 
 
                     <div id="right">
-                        <label for="lastName" id="label">Last Name:</label>
-                        <br>
-                        <input type="text" id="lastName" placeholder="Enter your last name"> 
+                        <label for="newPassword" id="label">Password:</label>
+                        
+                        <input type="password" id="newPassword" placeholder="Enter your password"> 
                     </div>
 
                 </div>
@@ -122,6 +122,9 @@
                 <label for="address" id="label">Address:</label>
                 <br>
                 <input type="text" id="address" placeholder="Enter your address"> 
+                <br>
+                <br>
+                <button type="submit" id="new" onclick="signUp()">Sign up</button>
             </div>
             <div id="signin">
                 <h3>SIGN IN</h3>
