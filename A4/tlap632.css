@@ -30,7 +30,7 @@ html {
 
 /* NAVIGATION */
 #tabs {
-    width: 60%;
+    width: 70%;
     float: left;
     margin-top: 1.5%;
     /* background-color: brown; */
@@ -49,26 +49,20 @@ li {
     
 }
 
-#user {
-    margin-left: 36%;
-    font-weight: bold;
-    color: darkgreen;
-    text-decoration: none;
-}
-
-/* fromHome is the id for the <a> linked to the 'locations' page */
-#fromHome {
-    text-decoration: none;
-    font-weight: bold;
-    color: darkgreen;
-} 
+/* #hello {
+    margin-top: 1.5%;
+} */
 
 #login {
-    width: 20%;
+    width: 10%;
     float: right;
     /* background-color: azure; */
     margin-top: 1.5%;
     margin-right: 5%;
+    padding-top: 0.3%;
+    text-align: center;
+    color: darkgreen;
+    display: none;
 }
 
                                         /* THE ACTUAL CONTENT */
@@ -87,6 +81,13 @@ li {
     text-align: center;
     color: darkgreen;
 }
+
+/* fromHome is the id for the <a> linked to the 'locations' page */
+#fromHome {
+    text-decoration: none;
+    font-weight: bold;
+    color: darkgreen;
+} 
 
                                         /* PRODUCTS PAGE */
 #products {
@@ -224,8 +225,8 @@ li {
     width: 40%;
     height: 40%;
     /* margin-top: 3%; */
-    margin-left: 7%;
-    float: left;
+    margin-right: 7%;
+    float: right;
     text-align: center;
 }
 
@@ -233,9 +234,9 @@ li {
     /* background-color: lemonchiffon; */
     width: 40%;
     height: 40%;
-    float: right;
+    float: left;
     /* margin-top: 3%; */
-    margin-right: 7%;
+    margin-left: 7%;
     text-align: center;
 }
 

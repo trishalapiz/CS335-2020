@@ -30,7 +30,7 @@ function displayProducts(products) { // products = the array of product records
     const addRecord = (record) => {
         itemContent += "<tr><td><img src=" + pic + record.ItemId + " height=300 width=300> </td><td>" 
         + record.Title + "<br>" + record.Origin + "<br>$" + record.Price + "<br>" + record.Type + 
-        "<br><button type=submit class=buy>Buy Now</button>" +"</td></tr>\n";
+        "<br><button type=submit class=buy onclick='verify(" + record.ItemId + ")'>Buy Now</button>" +"</td></tr>\n";
     }
     // alert(products);
   products.forEach(addRecord); // record in 'addRecord' is each [] in the array returned by the stream, which is assigned to the const 'products'
@@ -46,12 +46,35 @@ function searchProducts() { // retrieve products based on user search
     streamPromise.then( (data) => displayProducts(data) ); 
 }
 
-function buyProduct() {
-    const input = document.getElementById('productSearch').value;
-    const term ="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=" + input;
-    const fetchPromise = fetch(term, {headers : {"Accept" : "application/json",}});
-    const streamPromise = fetchPromise.then( (response) => response.json() ); 
-    streamPromise.then( (data) => alert(data) ); 
+function verify(id) { // check if user is logged in when they try to buy the item
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    console.log("username is " + " and password is " + password);
+
+    // check if user is logged in
+    if (username === undefined && password === undefined) { // if NOT logged in
+        alert("You need to be signed in to purchase a product");
+        const status = login(-1);
+        if (status == 0) {
+            products(); // go back to products page
+        }
+    } else { // else do something else
+
+        // THE FOLLOWING CODE, IS WHERE U LOG IN IF HAVEN'T ALREADY
+        const xhr = new XMLHttpRequest();
+        const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id=" + id;
+        // const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+        xhr.open("GET", uri, true);
+        xhr.setRequestHeader("Accept", "application/json;charset=UTF-8");
+        xhr.onload = () => {
+            const prompt = xhr.responseText;
+            console.log("prompt was " + prompt);  
+            document.getElementById().innerHtml = prompt;
+          }
+        xhr.send(null);
+        products();
+    }
 }
 
 // FUNCTIONS RELATED TO THE LOCATIONS PAGE
@@ -153,11 +176,54 @@ function postComment() {
 }
 
 // FUNCTIONS RELATED TO THE REGISTER PAGE
-function register() {
+function register() { // if going to register page from Home menu
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "inline";
+}
+
+function login(num) { // if authentication failed
+
+    if (num == -1) { // signing in because authentication failed
+        // show the register page
+        document.getElementById('home').style.display = "none";
+        document.getElementById('products').style.display = "none";
+        document.getElementById('location').style.display = "none";
+        document.getElementById('news').style.display = "none";
+        document.getElementById('guest').style.display = "none";
+        document.getElementById('register').style.display = "inline";
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        return 0;
+    } else { // signing in from the home page
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (username == "trisha" && password == "hello") {
+            home();
+            alert("Hey Trisha, you're logged in!");
+            document.getElementById('login').style.display = "inline";
+        } else if (username == "trisha" && password != "hello") {
+            alert("Your username is correct but the password is wrong. Please try again.");
+        } else if (username != "trisha" && password == "hello") {
+            alert("Your password is correct but the username is wrong. Please try again.");
+        } else { // log in failed
+            alert("Your log in credentials are wrong. Please try again.");
+        }  
+    }
+
+}
+
+function authenticate() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const xhr = new XMLHttpRequest();
+    const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+    xhr.open("GET", uri, true, username, password);
+    xhr.withCredentials = true;
+    xhr.send(null);
 }
