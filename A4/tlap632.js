@@ -7,6 +7,7 @@ function home() {
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
 }
 
 // FUNCTIONS RELATED TO THE PRODUCTS PAGE
@@ -17,6 +18,7 @@ function products() { // get product data
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
 
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items', {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.json() ); 
@@ -40,24 +42,22 @@ function displayProducts(products) { // products = the array of product records
 }
 
 function buyProduct(id) {
-    // http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id={ID}
-    // proxy = http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url=
-    // const buyLink = "http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url=" + encodeURIComponent("http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id=" + id);
-    // const fetchPromise = fetch(decodeURIComponent(buyLink), {headers : {"Accept" : "application/json",}});
-    // const streamPromise = fetchPromise.then( (response) => response.json() );
-    // streamPromise.then( (data) => alert(data));
-    
-    // const uri = "http://redsox.uoa.auckland.ac.nz/cors/CorsProxyService.svc/proxy?url=" + "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+
+    const username = document.getElementById('newName').value;
+    const password = document.getElementById('newPassword').value;
+
     const xhr = new XMLHttpRequest();
-    const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+    const uri = "http://localhost:8189/Service.svc/buy?id=" + id;
     xhr.open("GET", uri, true, username, password);
     xhr.withCredentials = true;
+    xhr.onload = () => {
+        if (xhr.response == 200) {
+            alert(JSON.parse(xhr.responseText));
+        } else {
+            login();
+        }
+    }
     xhr.send(null);
-
-
-    // xhr.open("GET", uri, true, username, password);
-    // xhr.withCredentials = true;
-
 
 }
 
@@ -70,7 +70,6 @@ function searchProducts() { // retrieve products based on user search
 }
 
 
-
 // FUNCTIONS RELATED TO THE LOCATIONS PAGE
 function locations() {
     document.getElementById('home').style.display = "none";
@@ -79,6 +78,7 @@ function locations() {
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
 
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard', {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.text() );
@@ -119,6 +119,7 @@ function news() {
     document.getElementById('news').style.display = "inline";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
 
     const fetchPromise = fetch('http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news', {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.json() ); 
@@ -146,6 +147,7 @@ function guestBook() {
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "inline";
     document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
     
     // retrieving comments
     document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments';
@@ -177,22 +179,37 @@ function register() { // if going to register page from Home menu
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "inline";
+    document.getElementById('login').style.display = "none";
 }
 
 function signUp() {
-    // http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register
+    // http://localhost:8188/DairyService.svc/register
     const name = document.getElementById('newName').value; 
     const password = document.getElementById('newPassword').value; 
     const address = document.getElementById('address').value; 
 
-    const register = encodeURI("http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register");
+    const register = encodeURIComponent("http://localhost:8188/DairyService.svc/register");
 
-    const fetchPromise = fetch(register, {
+    const fetchPromise = fetch(decodeURIComponent(register), {
         method: "POST",
         body: JSON.stringify({Address : address, Name : name, Password : password}),
         headers : {
             "Content-Type" : "application/json"
         }
     });
+    const streamPromise = fetchPromise.then( (response) => response.json() );
+    streamPromise.then( (data) => {
+        alert(name + "! You've signed up! Happy Shopping!!!");
+    });
 }
 
+// FUNCTIONS RELATED TO THE LOGIN PAGE
+function login() { // if going to register page from Home menu
+    document.getElementById('home').style.display = "none";
+    document.getElementById('products').style.display = "none";
+    document.getElementById('location').style.display = "none";
+    document.getElementById('news').style.display = "none";
+    document.getElementById('guest').style.display = "none";
+    document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "inline";
+}

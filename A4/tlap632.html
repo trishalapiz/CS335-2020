@@ -31,14 +31,13 @@
                         <a href="javascript:void(0)" class="links" onclick="guestBook()">Guest Book &#128214;</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="links" onclick="register()">User details &#128100;</a>
+                        <a href="javascript:void(0)" class="links" onclick="register()">Register &#128100;</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="links" onclick="login()">Login &#128187;</a>
                     </li>
                 </ul>
             </div>
-
-            <!-- <div id="login">
-                <p>Welcome Trisha!</p>
-            </div> -->
         </div>
 
                                 <!-- THE ACTUAL CONTENT -->
@@ -98,36 +97,31 @@
         <!-- Registration section -->
         <section id="register">
             <h1>User Registration</h1>
-            <div id="signup">
-                <h3>SIGN UP</h3>
+            <br>
+            <h3>SIGN UP</h3>
                 <p>Please enter your details below to <strong>sign up</strong> and buy our products online!</p>
                 
-                <div id="separate">
 
-                    <div id="left">
-                        <label for="newName" id="label">Name:</label>
-                        
-                        <input type="text" id="newName" placeholder="Enter your name"> 
-                    </div>
+                <label for="newName" id="label">Name:</label>
+                <input type="text" id="newName" placeholder="Enter your name"> 
+                
+                <label for="newPassword" id="label">Password:</label>
+                <input type="password" id="newPassword" placeholder="Enter your password"> 
 
-
-                    <div id="right">
-                        <label for="newPassword" id="label">Password:</label>
-                        
-                        <input type="password" id="newPassword" placeholder="Enter your password"> 
-                    </div>
-
-                </div>
-
-                <label for="address" id="label">Address:</label>
-                <br>
-                <input type="text" id="address" placeholder="Enter your address"> 
+                <br><br>
+                <label for="address" id="label">Address:</label> <input type="text" id="address" placeholder="Enter your address"> 
                 <br>
                 <br>
                 <button type="submit" id="new" onclick="signUp()">Sign up</button>
-            </div>
-            <div id="signin">
-                <h3>SIGN IN</h3>
+            
+        </section>
+
+        <!-- Login section -->
+        <section id="login">
+            <h1>Login</h1>
+            <br>
+
+            <h3>SIGN IN</h3>
                 <p>Please enter your details below to <strong>sign in</strong> and buy our products online!</p>
                 <label for="username" id="label">Username:</label>
                 <!-- <br> -->
@@ -139,8 +133,7 @@
                 <input type="password" id="password" placeholder="password"> 
                 <br>
                 <br>
-                <button type="submit" id="logon" onclick="login(0)">Sign In</button>
-            </div>
+                <button type="submit" id="logon" onclick="">Sign In</button>
             
         </section>
     </body>
