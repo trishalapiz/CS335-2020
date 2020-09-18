@@ -24,11 +24,6 @@ function daily() {
 }
 
 function monthly() {
-    // BAR CHART
-    // https://css-tricks.com/how-to-make-charts-with-svg/#bar-charts
-    // // https://codepen.io/team/css-tricks/pen/11765f3b51a188f30c624588f75b73d5?editors=110
-
-    // PIE CHART https://css-tricks.com/how-to-make-charts-with-svg/#pie-charts
 
     const fetchPromise = fetch('https://api.thevirustracker.com/free-api?countryTimeline=NZ', {headers : {"Accept" : "application/json",}});
     const streamPromise = fetchPromise.then( (response) => response.json() ); 
@@ -37,11 +32,6 @@ function monthly() {
         
         const addRecord = (record) => { // record is a dictionary full of daily cases
             // console.log(Object.keys(record)); // ["2/28/20", "2/29/20", "3/01/20", "3/02/20", "3/03/20", "3/04/20",....]
-            const dates = Object.keys(record); // returns array
-            const latestDate = dates[Object.keys(dates)[Object.keys(dates).length - 2]]; // -2 because last key is "stat"
-            const caseTotal = record[latestDate]["total_cases"] // total amount of cases recorded so far
-            console.log("total amount of cases recorded are", caseTotal); // 1801
-
             
             for (key in record) {
                 if (key == "stat") {
@@ -83,8 +73,9 @@ function drawGraph(totalCases) {
     // "<text x='" + (((2*radius)*i)-8) + "' y='" + ((height/2)+4) + "' >" + (i-1).toString() + "</text>";
 
     for (month in totalCases) {
+        console.log(months[month]);
         svg += "<text x='" + 10 + "' y='" + (y + 8) + "' font-size='xx-small'>" + months[month].toString() + "</text>" + 
-                "<rect x='70' y='" + y + "' height='" + height + "' width='" + totalCases[month]/10 + "' stroke='lime' fill='yellow'/>" +
+                "<rect x='70' y='" + y + "' height='" + height + "' width='" + totalCases[month]/10 + "' stroke='rgb(9, 54, 95)' stroke-width='0.5' fill='rgb(117, 182, 243)'/>" +
                 "<text x='" + ((totalCases[month]/10) + 80) + "' y='" + (y + 9) + "' font-size='xx-small'>" + totalCases[month].toString() + "</text>";
         y += height;
     }
@@ -93,8 +84,43 @@ function drawGraph(totalCases) {
 
 }
 
-daily();
+function info() {
+    const fetchPromise = fetch('https://api.thevirustracker.com/free-api?countryTimeline=NZ', {headers : {"Accept" : "application/json",}});
+    const streamPromise = fetchPromise.then( (response) => response.json() ); 
+    streamPromise.then( (data) => {
+        let tableContent = "";
+
+        const addRecord = (record) => { // record is a dictionary full of daily cases
+            // console.log(Object.keys(record)); // ["2/28/20", "2/29/20", "3/01/20", "3/02/20", "3/03/20", "3/04/20",....]
+            const dates = Object.keys(record); // returns array full of keys
+            const latestDate = dates[Object.keys(dates)[Object.keys(dates).length - 2]]; // -2 because last key is "stat"
+
+            const recoveryTotal = record[latestDate]["total_recoveries"];
+            const deathTotal = record[latestDate]["total_deaths"];
+            const caseTotal = record[latestDate]["total_cases"]; 
+            const newCases = record[latestDate]["new_daily_cases"]; 
+
+            document.getElementById('current').innerHTML = "As of " + latestDate + ": ";
+            // document.getElementById('one').innerHTML = newCases;
+            // document.getElementById('two').innerHTML = recoveryTotal;
+            // document.getElementById('three').innerHTML = deathTotal;
+            // document.getElementById('four').innerHTML = caseTotal;
+
+            tableContent = "<tr><th>Cases recorded today</th><th>Total recoveries</th></tr>" +
+                            "<tr><td>" + newCases + "</td><td>" + recoveryTotal + "</td></tr>" +
+                            "<tr><th>Total deaths</th><th>Total cases recorded</th></tr>" + 
+                            "<tr><td>" + deathTotal + "</td><td>" + caseTotal + "</td></tr>";
+
+        }
+
+        data["timelineitems"].forEach(addRecord);
+        document.getElementById('details').innerHTML = tableContent;
+    } );
+}
+
+// daily();
 monthly();
+info();
 
 // dates are KEYS, 'timelineitems' is a key from the outer dict
 // 'timelineitems' is an array with its elements being dictionaries

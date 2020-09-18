@@ -24,7 +24,7 @@ header {
 #month {
     /* background-color: aqua; */
     height: 50%;
-    width: 100%;
+    width: 50%;
     float: left;
     /* border: 1px solid #000000; */
     text-align: center;
@@ -32,7 +32,7 @@ header {
 }
 
 #daily {
-    background-color: rgb(145, 151, 241);
+    /* background-color: rgb(145, 151, 241); */
     border: 1px solid #000000;
     height: 50%;
     width: 100%;
@@ -40,7 +40,37 @@ header {
     text-align: center;
 }
 
-#news td{
+#newDaily {
+    /* background-color: lightcoral; */
+    height: 50%;
+    width: 50%;
+    float: right;
+    padding: 0% 5%;
+    /* border: 1px solid #000000; */
+    /* text-align: center; */
+    margin-bottom: 2%;
+}
+
+#current {
+    text-align: center;
+}
+
+/* #details td{
+    border-right: 1px solid black;
+}
+
+#details th {
+    border: 1px solid black;
+} */
+
+#details {
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+/* #news td{
     border-right: 1px solid black;
 }
 
@@ -51,8 +81,8 @@ header {
 #news {
     width: 100%;
     border: 1px solid black;
-}
+} */
 
-/* #infograph {
+/* #infograph, #graph {
     background-color: blueviolet;
 } */
