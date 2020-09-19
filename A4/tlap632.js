@@ -234,3 +234,25 @@ function login() { // if going to register page from Home menu
     document.getElementById('register').style.display = "none";
     document.getElementById('login').style.display = "inline";
 }
+
+function checkLogin() {
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const xhr = new XMLHttpRequest();
+    const uri = "http://localhost:8189/Service.svc/user";
+    xhr.open("GET", uri, true, username, password);
+    xhr.withCredentials = true;
+    xhr.onload = () => {
+        if (xhr.status != 200) {
+            login();
+        } else {
+            products();
+        }
+    }
+    xhr.send(null);
+    
+}
+
+home(); // to execute the program

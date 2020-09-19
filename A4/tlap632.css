@@ -130,6 +130,7 @@ li {
     color: darkGreen;
     font-size: large;
     display: none;
+    padding: 4% 0%;
 }
 
 #details td {
