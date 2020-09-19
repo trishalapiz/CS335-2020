@@ -109,6 +109,18 @@ li {
     border:1px solid darkGreen;
 } 
 
+                                        /* BOUGHT PAGE */
+#bought {
+    float: left;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    color: darkgreen;
+    font-size: large;
+    display: none;
+}
+
+
 
                                         /* LOCATIONS PAGE */
 #location {
