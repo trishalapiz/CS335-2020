@@ -3,6 +3,7 @@
 function home() {
     document.getElementById('home').style.display = "inline";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
@@ -14,6 +15,7 @@ function home() {
 function products() { // get product data
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "inline";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
@@ -51,13 +53,27 @@ function buyProduct(id) {
     xhr.open("GET", uri, true, username, password);
     xhr.withCredentials = true;
     xhr.onload = () => {
-        if (xhr.response == 200) {
-            alert(JSON.parse(xhr.responseText));
-        } else {
+        if (xhr.status != 200) {
             login();
+        } else {
+            buyConfirmation(xhr.responseText);
         }
     }
     xhr.send(null);
+
+}
+
+function buyConfirmation(message) {
+    document.getElementById('home').style.display = "none";
+    document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "inline";
+    document.getElementById('location').style.display = "none";
+    document.getElementById('news').style.display = "none";
+    document.getElementById('guest').style.display = "none";
+    document.getElementById('register').style.display = "none";
+    document.getElementById('login').style.display = "none";
+
+    document.getElementById('confirmation').innerText = message;
 
 }
 
@@ -74,6 +90,7 @@ function searchProducts() { // retrieve products based on user search
 function locations() {
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "inline";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
@@ -115,6 +132,7 @@ function showVCard(data) {
 function news() {
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "inline";
     document.getElementById('guest').style.display = "none";
@@ -143,6 +161,7 @@ function displayNews(news) {
 function guestBook() {
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "inline";
@@ -175,6 +194,7 @@ function postComment() {
 function register() { // if going to register page from Home menu
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
@@ -207,6 +227,7 @@ function signUp() {
 function login() { // if going to register page from Home menu
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
+    document.getElementById('bought').style.display = "none";
     document.getElementById('location').style.display = "none";
     document.getElementById('news').style.display = "none";
     document.getElementById('guest').style.display = "none";
