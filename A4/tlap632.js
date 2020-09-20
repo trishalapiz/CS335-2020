@@ -169,13 +169,13 @@ function guestBook() {
     document.getElementById('login').style.display = "none";
     
     // retrieving comments
-    document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments';
+    document.getElementById('book').src = 'http://localhost:8188/DairyService.svc/htmlcomments';
 }
 
 function postComment() {
     const message = document.getElementById('commentSpace').value; // the actual comment
     const name = document.getElementById('nameSpace').value; // who posted
-    const comment = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/comment?name=" + name;
+    const comment = "http://localhost:8188/DairyService.svc/comment?name=" + name;
 
     const fetchPromise = fetch(comment, {
         method: "POST",
@@ -186,7 +186,7 @@ function postComment() {
     });
     const streamPromise = fetchPromise.then( (response) => response.json() );
     streamPromise.then( (data) => {
-        document.getElementById('book').src = 'http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments';
+        document.getElementById('book').src = 'http://localhost:8188/DairyService.svc/htmlcomments';
     }); // show comment straight away after it's posted
 }
 
@@ -257,6 +257,27 @@ function checkLogin() {
     }
     xhr.send(null);
 
+}
+
+function signOut() {
+    // http://localhost:8188/DairyService.svc/register
+    const name = document.getElementById('newName').value; 
+    const password = document.getElementById('newPassword').value; 
+    const address = document.getElementById('address').value; 
+
+    const register = encodeURIComponent("http://localhost:8188/DairyService.svc/register");
+
+    const fetchPromise = fetch(decodeURIComponent(register), {
+        method: "POST",
+        body: JSON.stringify({Address : address, Name : name, Password : password}),
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    });
+    const streamPromise = fetchPromise.then( (response) => response.json() );
+    streamPromise.then( (data) => {
+        alert(name + ", you have successfully signed out.");
+    });
 }
 
 home(); // to execute the program
