@@ -34,7 +34,7 @@
                         <a href="javascript:void(0)" class="links" onclick="register()">Register &#128100;</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="links" onclick="login()">Login &#128187;</a>
+                        <a href="javascript:void(0)" class="links" onclick="login(null)">Login &#128187;</a>
                     </li>
                 </ul>
             </div>
@@ -130,7 +130,7 @@
             <br>
 
             <h3>SIGN IN</h3>
-                <p>Please enter your details below to <strong>sign in</strong> and buy our products online!</p>
+                <p id="message">Please enter your details below to <strong>sign in</strong> and buy our products online!</p>
                 <label for="username" id="label">Username:</label>
                 <!-- <br> -->
                 <input type="text" id="username" placeholder="username"> 

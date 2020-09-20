@@ -73,7 +73,7 @@ function buyConfirmation(message) {
     document.getElementById('register').style.display = "none";
     document.getElementById('login').style.display = "none";
 
-    document.getElementById('confirmation').innerText = message;
+    document.getElementById('confirmation').innerHTML = message;
 
 }
 
@@ -224,7 +224,7 @@ function signUp() {
 }
 
 // FUNCTIONS RELATED TO THE LOGIN PAGE
-function login() { // if going to register page from Home menu
+function login(status) { // if going to register page from Home menu
     document.getElementById('home').style.display = "none";
     document.getElementById('products').style.display = "none";
     document.getElementById('bought').style.display = "none";
@@ -233,6 +233,10 @@ function login() { // if going to register page from Home menu
     document.getElementById('guest').style.display = "none";
     document.getElementById('register').style.display = "none";
     document.getElementById('login').style.display = "inline";
+
+    if (status == false) {
+        document.getElementById('message').innerText = "Incorrect details, please try again";
+    }
 }
 
 function checkLogin() {
@@ -245,14 +249,14 @@ function checkLogin() {
     xhr.open("GET", uri, true, username, password);
     xhr.withCredentials = true;
     xhr.onload = () => {
-        if (xhr.status != 200) {
-            login();
+        if (xhr.status != 200) { // if the details are wrong or if the user doesn't exist in the system
+            login(false);
         } else {
             products();
         }
     }
     xhr.send(null);
-    
+
 }
 
 home(); // to execute the program
