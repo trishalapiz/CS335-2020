@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "GJP5GNTJ0kqj8FbH9KNchZhlSHFlkXXov3Nt4RzmT07nd42oqDlqU9Cpqnb22EuqwTqvjiWK6nNbYkb1DXk+JA==",
+  "success": true,
+  "projectFilePath": "/Users/trisha/Documents/GitHub/CS335-2020/A6/Assignment.csproj",
+  "expectedPackageFiles": [
+    "/Users/trisha/.nuget/packages/carter/5.2.0/carter.5.2.0.nupkg.sha512",
+    "/Users/trisha/.nuget/packages/fluentvalidation/9.0.1/fluentvalidation.9.0.1.nupkg.sha512",
+    "/Users/trisha/.nuget/packages/microsoft.extensions.dependencymodel/3.1.0/microsoft.extensions.dependencymodel.3.1.0.nupkg.sha512",
+    "/Users/trisha/.nuget/packages/microsoft.openapi/1.1.4/microsoft.openapi.1.1.4.nupkg.sha512",
+    "/Users/trisha/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/Users/trisha/.nuget/packages/system.text.json/4.7.0/system.text.json.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

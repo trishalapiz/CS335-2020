@@ -1,0 +1,24 @@
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.deps.json
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.runtimeconfig.json
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.runtimeconfig.dev.json
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.dll
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.pdb
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.csprojAssemblyReference.cache
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.AssemblyInfoInputs.cache
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.AssemblyInfo.cs
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.csproj.CoreCompileInputs.cache
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.dll
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.pdb
+/Users/trisha/OneDrive/UoA/Sem22020/COMPSCI335/part two/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.genruntimeconfig.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.deps.json
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.runtimeconfig.json
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.runtimeconfig.dev.json
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.dll
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/bin/Debug/netcoreapp3.1/a21-model-cs.pdb
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.csprojAssemblyReference.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.AssemblyInfoInputs.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.AssemblyInfo.cs
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.csproj.CoreCompileInputs.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.dll
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.pdb
+/Users/trisha/Documents/GitHub/CS335-2020/A21-student/obj/Debug/netcoreapp3.1/a21-model-cs.genruntimeconfig.cache

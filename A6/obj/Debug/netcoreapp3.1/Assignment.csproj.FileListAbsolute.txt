@@ -1,0 +1,4 @@
+/Users/trisha/Documents/GitHub/CS335-2020/A6/obj/Debug/netcoreapp3.1/Assignment.csprojAssemblyReference.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A6/obj/Debug/netcoreapp3.1/Assignment.AssemblyInfoInputs.cache
+/Users/trisha/Documents/GitHub/CS335-2020/A6/obj/Debug/netcoreapp3.1/Assignment.AssemblyInfo.cs
+/Users/trisha/Documents/GitHub/CS335-2020/A6/obj/Debug/netcoreapp3.1/Assignment.csproj.CoreCompileInputs.cache
