@@ -1,0 +1,2 @@
+{"id":8101, "parallel":true, "target": "It goes like this, the fourth, the fifth; The minor falls, the major lifts"}
+{"id":8101, "parallel": true, "monkeys": 2000, "length": 0, "crossover": 80, "mutation": 2 }

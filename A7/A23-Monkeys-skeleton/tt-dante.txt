@@ -1,0 +1,2 @@
+{"id":8101, "parallel":true, "target": "Lasciate ogni speranza, voi ch'entrate."}
+{"id":8101, "parallel": true, "monkeys": 2000, "length": 39, "crossover": 80, "mutation": 2 }

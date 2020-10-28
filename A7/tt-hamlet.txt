@@ -1,0 +1,2 @@
+{"id":8101, "parallel":true, "target": "To be or not to be, that is the question"}
+{"id":8101, "parallel": true, "monkeys": 2000, "length": 40, "crossover": 80, "mutation": 2 }
