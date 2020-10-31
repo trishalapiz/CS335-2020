@@ -14,118 +14,45 @@ namespace chinook {
     
     class Chinook {       
         public string Main2 (ChinookContext db, TextReader inp) {
-            // inp.ToString() then use .Split() ????
-
-            // Read() returning -1 means EOF
+            
             var all = inp.ReadToEnd();
-            var removeEscChars = all.Replace("\r\n", " ");
-            var splitInput = removeEscChars.Split(" "); // 'Artists', 'OrderBy Name DESC', 'Where ArtistID % 10 == 0', .....
+            var splitInput = all.Split("\r\n"); 
 
-            // ORIGINAL
-            string table = splitInput[0];
-            // List<string> output = new List<string>();
-            string query = "";
-            // string finalQuery = "";
+            var table = splitInput[0];
+            
+            var seq2 = table switch 
+            {
+                "Albums" => (IQueryable) db.Albums,
+                "Artists" => (IQueryable) db.Artists,
+                "Customers" => (IQueryable) db.Customers,
+                "Employees" => (IQueryable) db.Employees,
+                "Genres" => (IQueryable) db.Genres,
+                "Invoices" => (IQueryable) db.Invoices,
+                "InvoiceItems" => (IQueryable) db.InvoiceItems,
+                "MediaTypes" => (IQueryable) db.MediaTypes,
+                "Playlists" => (IQueryable) db.Playlists,
+                "PlaylistTrack" => (IQueryable) db.PlaylistTrack,
+                "Tracks" => (IQueryable) db.Tracks
+            };
 
-            switch (table) {
-                case "Albums":
-                    query = query + "db.Albums";
+            for (int i=1; i < splitInput.Length; i++) { 
+                var ttt = splitInput[i].Split(new string[]{" "}, 2, StringSplitOptions.None);
+                // ttt = "Take", "3"
 
-                    query = makeQuery(splitInput, query);
-
+                if (splitInput[i] == "") {
                     break;
-                case "Artists":
-                    query = query + "db.Artists";
+                }
 
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "Customers":
-                    query = query + "db.Customers";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "Employees":
-                    query = query + "db.Employees";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "Genres":
-                    query = query + "db.Genres";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "Invoices":
-                    query = query + "db.Invoices";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "InvoiceItems":
-                    query = query + "db.InvoiceItems";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "MediaTypes":
-                    query = query + "db.MediaTypes";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "PlaylistTrack":
-                    query = query + "db.PlaylistTrack";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                case "Tracks":
-                    query = query + "db.Tracks";
-
-                    query = makeQuery(splitInput, query);
-
-                    break;
-                default:
-                    WriteLine("Must have a table");
-                    break;
+                seq2 = ttt[0] switch {
+                    "OrderBy" => seq2.OrderBy(ttt[1]),
+                    "Where" => seq2.Where(ttt[1]),
+                    "Select" => seq2.Select(ttt[1]),
+                    "Skip" => seq2.Skip(Int32.Parse(ttt[1])),
+                    "Take" => seq2.Take(Int32.Parse(ttt[1])),
+                };
             }
-
-            return JsonSerializer.Serialize (query.AsEnumerable().ToList());
-        }
-
-        public string makeQuery(string[] stuff, string buildQuery) {
-
-            // string buildQuery = "";
-
-            for (int i=1; i < stuff.Length; i++) { // 1 = 'OrderBy Name DESC', 2 = 'Where ArtistID % 10 == 0', 3 = 'Take 3', 4 = 'Select new (ArtistId, Name)'
-                string[] command = stuff[i].Split(); // 0 = 'OrderBy', 1 = 'Name', 2 = 'DESC'                         
-                string mode = command[0]; // 'OrderBy'
-
-                var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                var line = String.Join(' ', toModify); // "Name DESC"
-                string theTask = "";
-
-                if (mode == "OrderBy") {
-                    theTask = ".OrderBy(" + line + ")";
-
-                } else if (mode == "Where") {
-                    theTask = ".Where(" + line + ")";
-
-                } else if (mode == "Take") {
-                    theTask = ".Take(" + line + ")";
-
-                } else if (mode == "Select") {
-                    theTask = ".Select(" + line + ")";
-                            
-                } 
-
-                buildQuery += theTask;
-                        
-            }
-            return buildQuery;
+            return JsonSerializer.Serialize(seq2.AsEnumerable().ToList());
+            // return "";
         }        
 
 
@@ -133,7 +60,7 @@ namespace chinook {
             try {
                 //WriteLine ($"{System.IO.Directory.GetCurrentDirectory()}");
                 var db = new ChinookContext ();
-                var json = new Chinook().Main2(db, Console.In);
+                var json = new Chinook (). Main2 (db, Console.In);
                 WriteLine ($"{json}");
                 
             } catch (Exception ex) {
@@ -143,17 +70,17 @@ namespace chinook {
     }
 }
 
-namespace chinook.Models {
+namespace chinook .Models {
     public partial class ChinookConStr {
         public static string ConStr = 
             @"Data Source=chinook.db;Mode=ReadOnly";
     }
 }
 
-namespace chinook.Models {
+namespace chinook .Models {
     using System;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore .Metadata;
+    using Microsoft .EntityFrameworkCore;
+    using Microsoft .EntityFrameworkCore .Metadata;
 
     public partial class ChinookContext : DbContext {
         public ChinookContext () {
