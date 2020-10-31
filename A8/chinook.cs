@@ -23,110 +23,127 @@ namespace chinook {
 
             // ORIGINAL
             var table = splitInput.GetValue(0);
-            List<string> output = new List<string>();
+            // List<string> output = new List<string>();
+            string query = "";
+            string finalQuery = "";
 
             switch (table) {
                 case "Albums":
-                    // HARDCODED FOR NOW!
-                    db.Albums.Take(3).Select("new (Title, Tracks.Count() as TracksCount)");
+                    query = query + "db.Albums";
 
-                    for (int i=1; i < splitInput.Length; i++) {
+                    finalQuery = makeQuery(splitInput, query);
 
-
-                    }
                     break;
                 case "Artists":
+                    query = query + "db.Artists";
 
-                    output.Add("db.Artists");
-
-                    for (int i=1; i < splitInput.Length; i++) { // 1 = 'OrderBy Name DESC', 2 = 'Where ArtistID % 10 == 0', 3 = 'Take 3', 4 = 'Select new (ArtistId, Name)'
-                        var command = splitInput[i].Split(" "); // 0 = 'OrderBy', 1 = 'Name', 2 = 'DESC'                         
-                        var mode = command[0]; // 'OrderBy'
-
-                        var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                        var line = String.Join(' ', toModify); // "Name DESC"
-
-                        if (mode == "OrderBy") {
-                            var theTask = ".OrderBy(" + line + ")";
-                            output.Add(theTask);
-
-                        } else if (mode == "Where") {
-                            var theTask = ".Where(" + line + ")";
-                            output.Add(theTask);
-
-                        } else if (mode == "Take") {
-                            var theTask = ".Take(" + line + ")";
-                            output.Add(theTask);
-                            
-                        } else if (mode == "Select") {
-                            var theTask = ".Select(" + line + ")";
-                            output.Add(theTask);
-                            
-                        }
-                        
-                    }
-
-                    // IEnumerable<string> query =
-                    // fruits.Cast<string>().OrderBy(fruit => fruit).Select(fruit => fruit);
-
-
+                    finalQuery = makeQuery(splitInput, query);
 
                     break;
                 case "Customers":
+                    query = query + "db.Customers";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "Employees":
+                    query = query + "db.Employees";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "Genres":
+                    query = query + "db.Genres";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "Invoices":
+                    query = query + "db.Invoices";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "InvoiceItems":
+                    query = query + "db.InvoiceItems";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "MediaTypes":
+                    query = query + "db.MediaTypes";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "PlaylistTrack":
+                    query = query + "db.PlaylistTrack";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 case "Tracks":
+                    query = query + "db.Tracks";
+
+                    finalQuery = makeQuery(splitInput, query);
+
                     break;
                 default:
                     WriteLine("Must have a table");
                     break;
             }
 
-            // return JsonSerializer.Serialize (output.AsEnumerable().ToList());
+            return JsonSerializer.Serialize (finalQuery.AsEnumerable().ToList());
         }
 
-        public string respond(string[] stuff) {
+        public string makeQuery(string[] stuff, string buildQuery) {
 
-            string buildQuery = "";
+            // string buildQuery = "";
 
             for (int i=1; i < stuff.Length; i++) { // 1 = 'OrderBy Name DESC', 2 = 'Where ArtistID % 10 == 0', 3 = 'Take 3', 4 = 'Select new (ArtistId, Name)'
-                var command = stuff[i].Split(); // 0 = 'OrderBy', 1 = 'Name', 2 = 'DESC'                         
-                var mode = command[0]; // 'OrderBy'
+                string[] command = stuff[i].Split(); // 0 = 'OrderBy', 1 = 'Name', 2 = 'DESC'                         
+                string mode = command[0]; // 'OrderBy'
 
-                        var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                        var line = String.Join(' ', toModify); // "Name DESC"
 
                 if (mode == "OrderBy") {
+                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
+                    var line = String.Join(' ', toModify); // "Name DESC"
+
                     var theTask = ".OrderBy(" + line + ")";
                     buildQuery += theTask;
 
                 } else if (mode == "Where") {
+                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
+                    var line = String.Join(' ', toModify); // "Name DESC"
+
                     var theTask = ".Where(" + line + ")";
-                    output.Add(theTask);
+                    buildQuery += theTask;
 
                 } else if (mode == "Take") {
-                    var theTask = ".Take(" + line + ")";
-                    output.Add(theTask);
-                            
+
+                    // var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
+                    // toModify[toModify.Length-1] = Int32.Parse(toModify[toModify.Length-1]);
+                    // var line = String.Join(' ', toModify); // "Name DESC"
+
+                    // var theTask = ".Take(" + line + ")";
+                    // buildQuery += theTask;
+
+                /////////
+                //      var command = stuff[i].Split(); // 0 = 'Take', 1 = '3'                   
+                // var mode = command[0]; // 'OrderBy'
+                int limit = int.Parse(command[1]);
+
                 } else if (mode == "Select") {
-                            var theTask = ".Select(" + line + ")";
-                    output.Add(theTask);
+                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
+                    var line = String.Join(' ', toModify); // "Name DESC"
+
+                    var theTask = ".Select(" + line + ")";
+                    buildQuery += theTask;
                             
                 }
                         
             }
-            return "";
+            return buildQuery;
         }        
 
 
