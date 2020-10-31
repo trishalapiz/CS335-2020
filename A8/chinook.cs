@@ -22,70 +22,70 @@ namespace chinook {
             var splitInput = removeEscChars.Split(" "); // 'Artists', 'OrderBy Name DESC', 'Where ArtistID % 10 == 0', .....
 
             // ORIGINAL
-            var table = splitInput.GetValue(0);
+            string table = splitInput[0];
             // List<string> output = new List<string>();
             string query = "";
-            string finalQuery = "";
+            // string finalQuery = "";
 
             switch (table) {
                 case "Albums":
                     query = query + "db.Albums";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Artists":
                     query = query + "db.Artists";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Customers":
                     query = query + "db.Customers";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Employees":
                     query = query + "db.Employees";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Genres":
                     query = query + "db.Genres";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Invoices":
                     query = query + "db.Invoices";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "InvoiceItems":
                     query = query + "db.InvoiceItems";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "MediaTypes":
                     query = query + "db.MediaTypes";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "PlaylistTrack":
                     query = query + "db.PlaylistTrack";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 case "Tracks":
                     query = query + "db.Tracks";
 
-                    finalQuery = makeQuery(splitInput, query);
+                    query = makeQuery(splitInput, query);
 
                     break;
                 default:
@@ -93,7 +93,7 @@ namespace chinook {
                     break;
             }
 
-            return JsonSerializer.Serialize (finalQuery.AsEnumerable().ToList());
+            return JsonSerializer.Serialize (query.AsEnumerable().ToList());
         }
 
         public string makeQuery(string[] stuff, string buildQuery) {
@@ -104,43 +104,25 @@ namespace chinook {
                 string[] command = stuff[i].Split(); // 0 = 'OrderBy', 1 = 'Name', 2 = 'DESC'                         
                 string mode = command[0]; // 'OrderBy'
 
+                var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
+                var line = String.Join(' ', toModify); // "Name DESC"
+                string theTask = "";
 
                 if (mode == "OrderBy") {
-                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                    var line = String.Join(' ', toModify); // "Name DESC"
-
-                    var theTask = ".OrderBy(" + line + ")";
-                    buildQuery += theTask;
+                    theTask = ".OrderBy(" + line + ")";
 
                 } else if (mode == "Where") {
-                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                    var line = String.Join(' ', toModify); // "Name DESC"
-
-                    var theTask = ".Where(" + line + ")";
-                    buildQuery += theTask;
+                    theTask = ".Where(" + line + ")";
 
                 } else if (mode == "Take") {
-
-                    // var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                    // toModify[toModify.Length-1] = Int32.Parse(toModify[toModify.Length-1]);
-                    // var line = String.Join(' ', toModify); // "Name DESC"
-
-                    // var theTask = ".Take(" + line + ")";
-                    // buildQuery += theTask;
-
-                /////////
-                //      var command = stuff[i].Split(); // 0 = 'Take', 1 = '3'                   
-                // var mode = command[0]; // 'OrderBy'
-                int limit = int.Parse(command[1]);
+                    theTask = ".Take(" + line + ")";
 
                 } else if (mode == "Select") {
-                    var toModify = new ArraySegment<string>(command, 1, command.Length-1).ToArray(); // {'Name', 'DESC'}
-                    var line = String.Join(' ', toModify); // "Name DESC"
-
-                    var theTask = ".Select(" + line + ")";
-                    buildQuery += theTask;
+                    theTask = ".Select(" + line + ")";
                             
-                }
+                } 
+
+                buildQuery += theTask;
                         
             }
             return buildQuery;
